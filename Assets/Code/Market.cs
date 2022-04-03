@@ -53,22 +53,30 @@ public class Market : MonoBehaviour
 
     private float DetermineCabbageValue(Cabbage cabbage)
     {
-        //TODO: Pass correct thing
         GeneticVector genetic_vector = cabbage.chromosome;
 
         float size = genetic_vector.size_p * cabbage.max_size;
         float weight = genetic_vector.weight_p * cabbage.max_weight;
-        float nut_p = genetic_vector.nut_p; // Nutrition percentage
+        float nut_p = genetic_vector.nut_p;
         Color color = genetic_vector.color;
 
-        // TODO : THIS IS DAVE'S BLACKBOX TO OUTPUT A VALUE HERE
-        float price = 0f;
+        float price = CabbagePrice(size, weight, nut_p, color);
         return 0f <= price ? price : 0f;
     }
 
     public void AdvanceTimestep()
     {
         GenerateNextPrices();
+    }
+
+    private float CabbagePrice(float size, float weight, float nut_p, Color color)
+    {
+        float size_component = size * size_prices[size_prices.Count - 1];
+        float weight_component = weight * weight_prices[weight_prices.Count - 1];
+        float nut_p_component = nut_p * nut_p_prices[nut_p_prices.Count - 1];
+        float color_component = color * color_prices[color_prices.Count - 1];
+
+        return size_component + weight_component + nut_p_component + color_component;
     }
 
     private void WarmupPrices()
