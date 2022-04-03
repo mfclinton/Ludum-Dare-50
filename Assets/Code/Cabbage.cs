@@ -29,6 +29,7 @@ public class Cabbage : MonoBehaviour
         float size = chromosome.size;
         float weight = chromosome.weight;
 
+        // Update the particle system
         var ps_main = ps.main;
         var ps_emission = ps.emission;
         var ps_shape = ps.shape;
@@ -37,7 +38,7 @@ public class Cabbage : MonoBehaviour
         ps_emission.rateOverTime = weight;
         ps_shape.radius = size;
 
-
+        // Updates the mesh
         transform.localScale = new Vector3(size, size, size);
         foreach (MeshRenderer mr in mrs)
         {
