@@ -64,7 +64,9 @@ MonoBehaviour:
     weight: 1
     nut_p: 1
     color: {r: 0.41437244, g: 0.7830189, b: 0.18836774, a: 0}
-  p_grown: 0
+  mut_r: 0
+  size_constraint: {x: 0, y: 0}
+  weight_constraint: {x: 0, y: 0}
 --- !u!1 &3022918490543972386
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +289,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.8282528, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

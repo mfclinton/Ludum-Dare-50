@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: 98d56e17f8904dc4aafe7ffbc205a628
+guid: fffcaaa6130624a4fae5163ef70dd08e
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5597893724768073616
+    second: Nutrition-Indicator_0
+  - first:
+      213: -8826332578847178749
+    second: Nutrition-Indicator_1
+  - first:
+      213: 3757961782091253725
+    second: Nutrition-Indicator_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +50,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,7 +110,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Nutrition-Indicator_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 120
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097703b0fa6bfad40800000000000000
+      internalID: 5597893724768073616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nutrition-Indicator_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 30
+        width: 120
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3004b509841928580800000000000000
+      internalID: -8826332578847178749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nutrition-Indicator_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 30
+        width: 120
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd70b0d8456f62430800000000000000
+      internalID: 3757961782091253725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

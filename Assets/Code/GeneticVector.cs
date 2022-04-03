@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class GeneticVector
 {
+    // Traits
+    public enum TRAIT_ID { SIZE, WEIGHT, NUT_P, COLOR };
     public float size, weight, nut_p;
     public Color color;
 
@@ -55,5 +57,44 @@ public class GeneticVector
         }
 
         return (new_color, mutated);
+    }
+
+
+    public string GetTraitClassification(TRAIT_ID t_id)
+    {
+        if(t_id == TRAIT_ID.SIZE)
+        {
+            if (size < 1f)
+                return "SMALL";
+            else if (size < 2f)
+                return "MEDIUM";
+            else
+                return "LARGE";
+        }
+        else if (t_id == TRAIT_ID.WEIGHT)
+        {
+            if (size < 0.5f)
+                return "LIGHT";
+            else if (size < 1f)
+                return "MEDIAL";
+            else
+                return "HEAVY";
+        }
+        else if (t_id == TRAIT_ID.NUT_P)
+        {
+            // TODO
+            if (size < 0.5f)
+                return "UNHEALTHY";
+            else if (size < 0.8f)
+                return "DECENT";
+            else
+                return "NUTRITIOUS";
+        }
+        else if (t_id == TRAIT_ID.COLOR)
+        {
+            return "Color is unsupported for logging";
+        }
+
+        return "NaN";
     }
 }
