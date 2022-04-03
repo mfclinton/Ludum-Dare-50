@@ -11,10 +11,16 @@ public class Cabbage : MonoBehaviour
     private MeshRenderer[] mrs;
     private ParticleSystem ps;
 
-    private void Start()
+    private void Awake()
     {
         mrs = GetComponentsInChildren<MeshRenderer>();
         ps = GetComponentInChildren<ParticleSystem>();
+    }
+
+
+    private void Update()
+    {
+        UpdateAppearance();
     }
 
 
@@ -24,6 +30,9 @@ public class Cabbage : MonoBehaviour
         this.size_constraint = size_constraint;
         this.weight_constraint = weight_constraint;
         this.mut_r = mut_r;
+
+        print(chromosome);
+        print(mut_r);
 
         UpdateAppearance();
     }
@@ -53,18 +62,15 @@ public class Cabbage : MonoBehaviour
     }
 
 
-    public Cabbage CrossBreed(Cabbage other)
+    public void CrossBreed(Cabbage other, Cabbage new_cabbage)
     {
         GeneticVector new_chromosome = chromosome.CrossOver(other.chromosome, Random.value, mut_r, size_constraint, weight_constraint);
 
         // TODO: MATT
-        float new_mut_r = 0f;
-        Vector2 new_size_constraint = Vector2.zero;
-        Vector2 new_weight_constraint = Vector2.zero;
-        
-        Cabbage new_cabbage = null;
-        new_cabbage.Set(new_chromosome, new_mut_r, new_size_constraint, new_weight_constraint);
+        float new_mut_r = 0.05f;
+        Vector2 new_size_constraint = new Vector2(0.1f, 10f);
+        Vector2 new_weight_constraint = new Vector2(0.1f, 10f);
 
-        return new_cabbage;
+        new_cabbage.Set(new_chromosome, new_mut_r, new_size_constraint, new_weight_constraint);
     }
 }

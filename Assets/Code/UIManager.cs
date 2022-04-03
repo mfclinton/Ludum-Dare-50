@@ -16,6 +16,7 @@ public class Selected_UI_Entry
 public class UIManager : MonoBehaviour
 {
     public Selected_UI_Entry[] selected_ui_entries_top, selected_ui_entries_bottom;
+    public GameObject temp_cabbage_prefab, c1_go, c2_go; // TODO: TEMP, REMOVE
 
     /// <summary>
     /// Updates the selected panel for the given cabbage
@@ -66,18 +67,19 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Creates a new cabbage from the selected cabbages
     /// </summary>
-    public bool Trigger_Splice()
+    public void Trigger_Splice()
     {
         // TODO : NICK make this work with your selection system
-        Cabbage c1 = null;
-        Cabbage c2 = null;
+        Cabbage c1 = c1_go.GetComponent<Cabbage>();
+        Cabbage c2 = c2_go.GetComponent<Cabbage>();
 
         if (c1 == null || c2 == null)
-            return false;
+            return;
 
-        Cabbage c3 = c1.CrossBreed(c2);
+        Cabbage c3 = Instantiate(temp_cabbage_prefab).GetComponent<Cabbage>(); // TODO: Matt or Nick need to instantiate the cabbage prefab beforehand to c3
+        c1.CrossBreed(c2, c3);
 
-        return true;
+        return;
     }
 
 
