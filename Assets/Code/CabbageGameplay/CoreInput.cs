@@ -21,7 +21,7 @@ public class CoreInput : MonoBehaviour
 
 
 
-    void SelectCabbageCheck(int _whichTooltip) {
+    PlotClass SelectCabbageCheck(int _whichTooltip, bool _highlight = true) {
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = ~LayerMask.GetMask("Plot"); // 1 << 1;
 
@@ -39,25 +39,33 @@ public class CoreInput : MonoBehaviour
             //print("hit!");
             // Do something with the object that was hit by the raycast.
 
+
             // focus cabbage or empty plot
             GameObject plotObj = hit.transform.gameObject;
             PlotClass plotClass = plotObj.GetComponent<PlotClass>();
+
+            if (_whichTooltip == -1) {
+                return plotClass;
+            }
+
             //plotClass.HighlightPlot();
             //Color startColor = plotObj.GetComponent<Renderer>().material.color;
 
             if (plotClass.attachedCabbage) {
-                tooltipClass.ShowCabbageTooltip(plotClass.attachedCabbage, _whichTooltip);
+                tooltipClass.ShowCabbageTooltip(plotClass.attachedCabbage, _whichTooltip, _highlight);
             }
             else {
                 tooltipClass.ShowPlotTooltip(_whichTooltip);
             }
-        
+
+            return plotClass;
         }
         else {
             // do this on esc press instead
             //tooltipClass.HideTooltip();
         }
 
+        return null;
     }
 
 
@@ -65,12 +73,28 @@ public class CoreInput : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetMouseButtonDown(0)) {
             SelectCabbageCheck(1);
         }
-        if (Input.GetMouseButtonDown(1)) {
+        else if (Input.GetMouseButtonDown(1)) {
             SelectCabbageCheck(2);
         }
+        else {
+
+            // mouse hover
+            PlotClass plotMouseHoverClass = SelectCabbageCheck(-1);
+            if (plotMouseHoverClass) {
+                if ((tooltipClass.GetTooltipFromId(1) == null && tooltipClass.GetTooltipFromId(1) != plotMouseHoverClass.attachedCabbage)) {
+                    SelectCabbageCheck(1, false);
+                } 
+                // TODO allow preview for 2 before selection
+                //else if ((tooltipClass.GetTooltipFromId(2) == null && tooltipClass.GetTooltipFromId(2) != plotMouseHoverClass.attachedCabbage)) {
+                //    SelectCabbageCheck(2, false);
+                //}
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             //tooltipClass.HideTooltip(); // TODO deselect func

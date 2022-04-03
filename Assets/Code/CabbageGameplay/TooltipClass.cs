@@ -14,6 +14,8 @@ public class TooltipClass : MonoBehaviour
         //[1] = tooltipCabbage1,
         //[2] = tooltipCabbage2
     };
+
+    // should be named cabbage...
     public GameObject GetTooltipFromId(int _id) {
         return tooltipDict[_id];
     }
@@ -89,7 +91,10 @@ public class TooltipClass : MonoBehaviour
     }
 
 
-    public void ShowCabbageTooltip(GameObject _cabbageObj, int _whichTooltipId = 0) {
+    //void ShowCabbageTooltipHelper(int idToUse, GameObject _cabbageObj) {
+    //}
+
+    public void ShowCabbageTooltip(GameObject _cabbageObj, int _whichTooltipId = 0, bool _shouldHighlight = true) {
         //print("TODO show cabbage popup");
 
         if (HideCabbageIfAlreadyShown(_cabbageObj)) {
@@ -97,15 +102,13 @@ public class TooltipClass : MonoBehaviour
         }
 
         int idToUse = _whichTooltipId;
+        bool shouldShowCabbage = false;
         // show on second
         if (IsOnlyFirstCabbageShown()) {
             if (idToUse == 0) {
                 idToUse = 2;
             }
-
-            SetTooltipFromId(idToUse, _cabbageObj);
-            ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
-            mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
+            shouldShowCabbage = true;
         }
 
         // show on first
@@ -113,10 +116,7 @@ public class TooltipClass : MonoBehaviour
             if (idToUse == 0) {
                 idToUse = 1;
             }
-
-            //tooltipCabbage1 = _cabbageObj;
-            SetTooltipFromId(idToUse, _cabbageObj);
-            ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
+            shouldShowCabbage = true;
         }
 
         // if both full
@@ -127,24 +127,40 @@ public class TooltipClass : MonoBehaviour
                 if (idToUse == 0) {
                     idToUse = 2;
                 }
-                SetTooltipFromId(idToUse, _cabbageObj);
-                ShowTooltipInternal(TooltipPopupType.CABBAGE, 2);
-                mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
+                shouldShowCabbage = true;
             }
 
             else if (mostRecentlySetCabbageNonOverwrite == tooltipCabbage1) {
                 if (idToUse == 0) {
                     idToUse = 1;
                 }
-                SetTooltipFromId(idToUse, _cabbageObj);
-                ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
-                mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
+                shouldShowCabbage = true;
             }
             else {
                 print("why is there no valid cabbage to overwrite tooltip");
             }
         }
         // assume most recent should be replaced
+
+        if (shouldShowCabbage) {
+            if (_shouldHighlight) {
+                //print("highligth!" + idToUse);
+                SetTooltipFromId(idToUse, _cabbageObj);
+                ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
+                mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
+            }
+            else {
+                // visibly show first tooltip 
+                if ( (GetTooltipFromId(1) == null 
+                    && GetTooltipFromId(2) != _cabbageObj)
+                    || (GetTooltipFromId(2) == null
+                    && GetTooltipFromId(1) != _cabbageObj)
+                ) {
+                    //print("preview!" + idToUse);
+                    ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse, _shouldHighlight);
+                }
+            }
+        }
 
     }
     public void HideTooltip(int _optTooltipID = 0) {
@@ -159,7 +175,7 @@ public class TooltipClass : MonoBehaviour
     }
 
 
-    private void ShowTooltipInternal(TooltipPopupType _whatToShow, int _optTooltipID = 0) { // TODO pass cabbage class not gameobject?
+    private void ShowTooltipInternal(TooltipPopupType _whatToShow, int _optTooltipID = 0, bool _shouldHighlight = true) { // TODO pass cabbage class not gameobject?
         if (_whatToShow == TooltipPopupType.PLOT) {
             // assume accuracy, show on first
             //print("todo show plot tooltip on top tooltip");
@@ -185,15 +201,17 @@ public class TooltipClass : MonoBehaviour
             }
         }
 
-        foreach (PlotClass plot in PlotManager.GetPlots()) {
-            if (plot.attachedCabbage == tooltipCabbage1) {
-                plot.HighlightPlot(PlotManager.HighlightTypes.FIRST);
-            } 
-            else if (plot.attachedCabbage == tooltipCabbage2) {
-                plot.HighlightPlot(PlotManager.HighlightTypes.SECOND);
-            }
-            else {
-                plot.HighlightPlot(PlotManager.HighlightTypes.NONE);
+        if (_shouldHighlight) {
+            foreach (PlotClass plot in PlotManager.GetPlots()) {
+                if (plot.attachedCabbage == tooltipCabbage1) {
+                    plot.HighlightPlot(PlotManager.HighlightTypes.FIRST);
+                }
+                else if (plot.attachedCabbage == tooltipCabbage2) {
+                    plot.HighlightPlot(PlotManager.HighlightTypes.SECOND);
+                }
+                else {
+                    plot.HighlightPlot(PlotManager.HighlightTypes.NONE);
+                }
             }
         }
     }
