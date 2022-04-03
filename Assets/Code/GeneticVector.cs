@@ -5,25 +5,55 @@ using UnityEngine;
 [System.Serializable]
 public class GeneticVector
 {
-    public object[] genes;
+    public float size, weight, nut_p;
+    public Color color;
 
-    /// <summary>
-    /// Creates an offspring from two genetic vectors
-    /// </summary>
-    /// <param name="other">Breeding partner's genes</param>
-    /// <returns>A new crossbred genetic vector</returns>
-    public GeneticVector CrossBreed(GeneticVector other)
+    public GeneticVector(float size, float weight, float nut_p, Color color)
     {
-        // TODO
-        return null;
+        this.size = size;
+        this.weight = weight;
+        this.nut_p = nut_p;
+        this.color = color;
     }
 
-    /// <summary>
-    /// Mutates the vector inplace
-    /// </summary>
-    /// <param name="mut_rate">Mutation rate</param>
-    public void Mutate(float mut_rate)
+
+    // Cross Over Functions 
+    public GeneticVector CrossOver(GeneticVector other, float p, float mut_r, Vector2 size_constraint, Vector2 weight_constraint)
     {
-        // TODO
+        (float new_size, bool size_mut) = FloatCrossOver(size, other.size, p, mut_r, size_constraint);
+        (float new_weight, bool weight_mut) = FloatCrossOver(weight, other.weight, p, mut_r, weight_constraint);
+        (float new_nut_p, bool nut_p_mut) = FloatCrossOver(nut_p, other.nut_p, p, mut_r, new Vector2(0f, 1f));
+
+        (Color new_color, bool color_mut) = ColorCrossOver(color, other.color, p, mut_r);
+
+        return new GeneticVector(new_size, new_weight, new_nut_p, new_color);
+    }
+
+
+    public (float, bool) FloatCrossOver(float self, float other, float p, float mut_r, Vector2 constraint)
+    {
+        float new_float = p * self + (1 - p) * other;
+
+        bool mutated = false;
+        if (Random.value <= mut_r)
+        {
+            new_float = Random.Range(constraint[0], constraint[1]);
+        }
+
+        return (new_float, mutated);
+    }
+
+
+    public (Color, bool) ColorCrossOver(Color self, Color other, float p, float mut_r)
+    {
+        Color new_color = p * self + (1 - p) * other;
+
+        bool mutated = false;
+        if(Random.value <= mut_r)
+        {
+            new_color = new Color(Random.value, Random.value, Random.value);
+        }
+
+        return (new_color, mutated);
     }
 }
