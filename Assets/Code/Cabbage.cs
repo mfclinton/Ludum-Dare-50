@@ -53,16 +53,18 @@ public class Cabbage : MonoBehaviour
     }
 
 
-    public void CrossBreed(Cabbage other)
+    public Cabbage CrossBreed(Cabbage other)
     {
         GeneticVector new_chromosome = chromosome.CrossOver(other.chromosome, Random.value, mut_r, size_constraint, weight_constraint);
 
-        // TODO
+        // TODO: MATT
         float new_mut_r = 0f;
         Vector2 new_size_constraint = Vector2.zero;
         Vector2 new_weight_constraint = Vector2.zero;
         
         Cabbage new_cabbage = null;
         new_cabbage.Set(new_chromosome, new_mut_r, new_size_constraint, new_weight_constraint);
+
+        return new_cabbage;
     }
 }

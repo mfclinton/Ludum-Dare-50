@@ -63,12 +63,31 @@ public class UIManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Creates a new cabbage from the selected cabbages
+    /// </summary>
+    public bool Trigger_Splice()
+    {
+        // TODO : NICK make this work with your selection system
+        Cabbage c1 = null;
+        Cabbage c2 = null;
+
+        if (c1 == null || c2 == null)
+            return false;
+
+        Cabbage c3 = c1.CrossBreed(c2);
+
+        return true;
+    }
+
+
     private void Start()
     {
         Clear_Selected_Panel(false);
         Clear_Selected_Panel(true);
 
-        //Example
+        // TODO: Nick make this work with your selection system
+        // Example
         //Cabbage cabbage = FindObjectOfType<Cabbage>();
         //Update_Selected_Panel(true, cabbage);
     }
