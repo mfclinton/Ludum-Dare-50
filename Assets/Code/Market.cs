@@ -56,8 +56,8 @@ public class Market : MonoBehaviour
         //TODO: Pass correct thing
         GeneticVector genetic_vector = cabbage.chromosome;
 
-        float size = genetic_vector.size_p;
-        float weight = genetic_vector.weight_p;
+        float size = genetic_vector.size_p * cabbage.max_size;
+        float weight = genetic_vector.weight_p * cabbage.max_weight;
         float nut_p = genetic_vector.nut_p; // Nutrition percentage
         Color color = genetic_vector.color;
 
