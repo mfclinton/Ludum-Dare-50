@@ -57,10 +57,20 @@ public class GeneticVector
 
     public (Color, bool) ColorCrossOver(Color self, Color other, float p, float mut_r)
     {
-        Color new_color = p * self + (1 - p) * other;
+        Vector3 self_color_vec = new Vector3(self.r, self.g, self.b) * 255;
+        Vector3 other_color_vec = new Vector3(other.r, other.g, other.b) * 255;
+        Vector3 full_color_vec = new Vector3(255f, 255f, 255f);
+
+        Vector3 self_color_sqred = Vector3.Scale((full_color_vec - self_color_vec), (full_color_vec - self_color_vec));
+        Vector3 other_color_sqred = Vector3.Scale((full_color_vec - other_color_vec), (full_color_vec - other_color_vec));
+        Vector3 unsqrrooted_value = self_color_sqred * p + other_color_sqred * (1-p);
+
+        Color new_color = new Color((255f - Mathf.Sqrt(unsqrrooted_value[0])) / 255f,
+            (255f - Mathf.Sqrt(unsqrrooted_value[1])) / 255f,
+            (255f - Mathf.Sqrt(unsqrrooted_value[2])) / 255f);
 
         bool mutated = false;
-        if(Random.value <= mut_r)
+        if (Random.value <= mut_r)
         {
             new_color = new Color(Random.value, Random.value, Random.value);
         }
@@ -69,41 +79,14 @@ public class GeneticVector
     }
 
 
-    public string GetTraitClassification(TRAIT_ID t_id)
+    public Dictionary<TRAIT_ID, float> GetIDToObsValueDict()
     {
-        if(t_id == TRAIT_ID.SIZE)
-        {
-            if (size_p < 1f)
-                return "SMALL";
-            else if (size_p < 2f)
-                return "MEDIUM";
-            else
-                return "LARGE";
-        }
-        else if (t_id == TRAIT_ID.WEIGHT)
-        {
-            if (weight_p < 0.5f)
-                return "LIGHT";
-            else if (weight_p < 1f)
-                return "MEDIAL";
-            else
-                return "HEAVY";
-        }
-        else if (t_id == TRAIT_ID.NUT_P)
-        {
-            // TODO
-            if (nut_p < 0.5f)
-                return "UNHEALTHY";
-            else if (nut_p < 0.8f)
-                return "DECENT";
-            else
-                return "NUTRITIOUS";
-        }
-        else if (t_id == TRAIT_ID.COLOR)
-        {
-            return "Color is unsupported for logging";
-        }
+        Dictionary<TRAIT_ID, float> dict = new Dictionary<TRAIT_ID, float>();
 
-        return "NaN";
+        dict[TRAIT_ID.SIZE] = size_p;
+        dict[TRAIT_ID.WEIGHT] = weight_p;
+        dict[TRAIT_ID.NUT_P] = nut_p;
+
+        return dict;
     }
 }

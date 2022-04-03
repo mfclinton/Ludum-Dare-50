@@ -13,6 +13,47 @@ public class Selected_UI_Entry
     public Image panel;
 }
 
+
+[System.Serializable]
+public class Displayed_Cabbage_Info
+{
+    public float thresh;
+    public string text;
+    public Sprite icon;
+}
+
+[System.Serializable]
+public class Cabbage_Info_Helper
+{
+    public GeneticVector.TRAIT_ID id;
+    public Displayed_Cabbage_Info[] cabbage_info;
+
+    public void Initialize()
+    {
+        cabbage_info = cabbage_info.OrderBy(ci => ci.thresh).ToArray();
+    }
+
+    public Displayed_Cabbage_Info Get_Cabbage_Info(float value)
+    {
+        if (cabbage_info.Length == 0)
+            return null;
+
+        int index = 0;
+        foreach(Displayed_Cabbage_Info ci in cabbage_info)
+        {
+            if (value < cabbage_info[index].thresh)
+                break;
+            index++;
+        }
+
+        if (index == cabbage_info.Length)
+            index = cabbage_info.Length - 1;
+
+        return cabbage_info[index];
+    }
+}
+
+
 [System.Serializable]
 public class Selected_UI_Panel
 {
@@ -24,6 +65,8 @@ public class UIManager : MonoBehaviour
     InputManager input_mng;
     GameManager gm;
     public Selected_UI_Panel[] selected_ui_panels;
+    public Cabbage_Info_Helper[] cabbage_info_entries;
+    public GeneticVector.TRAIT_ID[] displayed_traits;
 
     /// <summary>
     /// Updates the selected panel for the given cabbage
@@ -32,22 +75,27 @@ public class UIManager : MonoBehaviour
     /// <param name="selected">The selected cabbage</param>
     public void Update_Selected_Panel(int selected_index, Cabbage selected)
     {
+        Dictionary<GeneticVector.TRAIT_ID, float> dict = selected.GetObservableGeneticDict();
         Selected_UI_Entry[] ui_elements = selected_ui_panels[selected_index].entries;
 
-        foreach (GeneticVector.TRAIT_ID t_id in Enum.GetValues(typeof(GeneticVector.TRAIT_ID)))
+        foreach (GeneticVector.TRAIT_ID t_id in displayed_traits)
         {
-            if (!ui_elements.Any(ui_elem => ui_elem.id == t_id))
+            Selected_UI_Entry element = ui_elements.FirstOrDefault(ui_elem => ui_elem.id == t_id);
+            Cabbage_Info_Helper cih = cabbage_info_entries.FirstOrDefault(cih => cih.id == t_id);
+
+            if (element == null || cih == null)
                 continue;
 
-            Selected_UI_Entry element = ui_elements.First(ui_elem => ui_elem.id == t_id);
-
-            string text = selected.chromosome.GetTraitClassification(t_id);
-            // TODO: Grab a icon
+            float value = dict[t_id];
+            Displayed_Cabbage_Info dci = cih.Get_Cabbage_Info(value);
 
             element.panel.gameObject.SetActive(true);
+            
+            TextMeshProUGUI text_mesh = element.panel.GetComponentsInChildren<TextMeshProUGUI>().First(x => x.gameObject != element.panel.gameObject);
+            text_mesh.text = dci.text;
 
-            TextMeshProUGUI text_mesh = element.panel.GetComponentInChildren<TextMeshProUGUI>();
-            text_mesh.text = text;
+            Image icon = element.panel.GetComponentsInChildren<Image>().First(x => x.gameObject != element.panel.gameObject);
+            icon.sprite = dci.icon;
         }
     }
 

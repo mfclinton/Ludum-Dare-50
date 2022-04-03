@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8553830903892234029, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
 --- !u!1 &156574467 stripped
@@ -275,9 +279,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chromosome:
-    size_p: 0
-    weight_p: 0
-    nut_p: 0
+    size_p: 0.1
+    weight_p: 0.1
+    nut_p: 0.1
     color: {r: 0, g: 1, b: 0.07986307, a: 0}
   grown_p: 1
   max_size: 1
@@ -466,7 +470,7 @@ MonoBehaviour:
   cabbage_model_prefab: {fileID: 3022918489214841379, guid: 24cbd6f8fed81f749b01e9e9dda6987c, type: 3}
   day: 0
   cash: 0
-  mut_r: 0.1
+  mut_r: 0
   max_size: 5
   max_weight: 3
 --- !u!4 &529211958
@@ -1081,6 +1085,102 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24cbd6f8fed81f749b01e9e9dda6987c, type: 3}
+--- !u!1 &1410338044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410338048}
+  - component: {fileID: 1410338047}
+  - component: {fileID: 1410338046}
+  - component: {fileID: 1410338045}
+  m_Layer: 0
+  m_Name: Earth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &1410338045
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410338044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1410338046
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410338044}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1410338047
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410338044}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1410338048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410338044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424738305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1453,38 @@ MonoBehaviour:
       panel: {fileID: 801122492}
     - id: 2
       panel: {fileID: 1920830478}
+  cabbage_info_entries:
+  - id: 0
+    cabbage_info:
+    - thresh: 0.33
+      text: SMALL
+      icon: {fileID: -2542927779889279856, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+    - thresh: 0.66
+      text: MEDIUM
+      icon: {fileID: 6852133268939615318, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+    - thresh: 1
+      text: LARGE
+      icon: {fileID: 3668429462043007928, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+  - id: 1
+    cabbage_info:
+    - thresh: 0.4
+      text: LIGHT
+      icon: {fileID: 1758972571841800037, guid: fc46d1ffb4d49954b8467f0f66a09fa6, type: 3}
+    - thresh: 1
+      text: HEAVY
+      icon: {fileID: 2168956216262177909, guid: fc46d1ffb4d49954b8467f0f66a09fa6, type: 3}
+  - id: 2
+    cabbage_info:
+    - thresh: 0.33
+      text: POOR
+      icon: {fileID: 5597893724768073616, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+    - thresh: 0.66
+      text: OKAY
+      icon: {fileID: -8826332578847178749, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+    - thresh: 1
+      text: Nutritious
+      icon: {fileID: 3757961782091253725, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+  displayed_traits: 000000000100000002000000
 --- !u!4 &1690494833
 Transform:
   m_ObjectHideFlags: 0
