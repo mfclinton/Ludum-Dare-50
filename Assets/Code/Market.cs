@@ -8,8 +8,8 @@ public class Market
     {
         GeneticVector genetic_vector = cabbage.chromosome;
 
-        float size = genetic_vector.size;
-        float weight = genetic_vector.weight;
+        float size = genetic_vector.size_p;
+        float weight = genetic_vector.weight_p;
         float nut_p =  genetic_vector.nut_p; // Nutrition percentage
         Color color = genetic_vector.color;
 

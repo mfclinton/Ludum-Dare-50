@@ -5,8 +5,7 @@ using UnityEngine;
 public class Cabbage : MonoBehaviour
 {
     public GeneticVector chromosome;
-    public float mut_r;
-    public Vector2 size_constraint, weight_constraint;
+    public float grown_p, max_size, max_weight;
 
     private MeshRenderer[] mrs;
     private ParticleSystem ps;
@@ -24,15 +23,13 @@ public class Cabbage : MonoBehaviour
     }
 
 
-    public void Set(GeneticVector chromosome, float mut_r, Vector2 size_constraint, Vector2 weight_constraint)
+    public void Set(GeneticVector chromosome, float max_size, float max_weight)
     {
         this.chromosome = chromosome;
-        this.size_constraint = size_constraint;
-        this.weight_constraint = weight_constraint;
-        this.mut_r = mut_r;
+        this.max_size = max_size;
+        this.max_weight = max_weight;
 
-        print(chromosome);
-        print(mut_r);
+        this.grown_p = 1f; // TODO : Temp
 
         UpdateAppearance();
     }
@@ -41,8 +38,8 @@ public class Cabbage : MonoBehaviour
     public void UpdateAppearance()
     {
         Color color = chromosome.color;
-        float size = chromosome.size;
-        float weight = chromosome.weight;
+        float size = chromosome.size_p * this.max_size * this.grown_p;
+        float weight = chromosome.weight_p * this.max_weight * this.grown_p;
 
         // Update the particle system
         var ps_main = ps.main;
@@ -59,18 +56,5 @@ public class Cabbage : MonoBehaviour
         {
             mr.material.color = color;
         }
-    }
-
-
-    public void CrossBreed(Cabbage other, Cabbage new_cabbage)
-    {
-        GeneticVector new_chromosome = chromosome.CrossOver(other.chromosome, Random.value, mut_r, size_constraint, weight_constraint);
-
-        // TODO: MATT
-        float new_mut_r = 0.05f;
-        Vector2 new_size_constraint = new Vector2(0.1f, 10f);
-        Vector2 new_weight_constraint = new Vector2(0.1f, 10f);
-
-        new_cabbage.Set(new_chromosome, new_mut_r, new_size_constraint, new_weight_constraint);
     }
 }

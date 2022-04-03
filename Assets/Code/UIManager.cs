@@ -13,21 +13,26 @@ public class Selected_UI_Entry
     public Image panel;
 }
 
+[System.Serializable]
+public class Selected_UI_Panel
+{
+    public Selected_UI_Entry[] entries;
+}
+
 public class UIManager : MonoBehaviour
 {
-    public Selected_UI_Entry[] selected_ui_entries_top, selected_ui_entries_bottom;
-    public GameObject temp_cabbage_prefab, c1_go, c2_go; // TODO: TEMP, REMOVE
+    InputManager input_mng;
+    GameManager gm;
+    public Selected_UI_Panel[] selected_ui_panels;
 
     /// <summary>
     /// Updates the selected panel for the given cabbage
     /// </summary>
     /// <param name="bottom">True to update the bottom panel, false to update the top panel</param>
     /// <param name="selected">The selected cabbage</param>
-    public void Update_Selected_Panel(bool bottom, Cabbage selected)
+    public void Update_Selected_Panel(int selected_index, Cabbage selected)
     {
-        Selected_UI_Entry[] ui_elements = selected_ui_entries_top;
-        if (bottom)
-            ui_elements = selected_ui_entries_bottom;
+        Selected_UI_Entry[] ui_elements = selected_ui_panels[selected_index].entries;
 
         foreach (GeneticVector.TRAIT_ID t_id in Enum.GetValues(typeof(GeneticVector.TRAIT_ID)))
         {
@@ -47,11 +52,11 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void Clear_Selected_Panel(bool bottom)
+    public void Clear_Selected_Panel(int selected_index)
     {
-        Selected_UI_Entry[] ui_elements = selected_ui_entries_top;
-        if (bottom)
-            ui_elements = selected_ui_entries_bottom;
+        Selected_UI_Entry[] ui_elements = selected_ui_panels[selected_index].entries;
+        if (selected_index == 1)
+            ui_elements = selected_ui_panels[selected_index].entries;
 
         foreach (GeneticVector.TRAIT_ID t_id in Enum.GetValues(typeof(GeneticVector.TRAIT_ID)))
         {
@@ -64,29 +69,28 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void Clear_All_Panels()
+    {
+        for (int i = 0; i < selected_ui_panels.Count(); i++)
+        {
+            Clear_Selected_Panel(i);
+        }
+    }
+
+
     /// <summary>
     /// Creates a new cabbage from the selected cabbages
     /// </summary>
     public void Trigger_Splice()
     {
-        // TODO : NICK make this work with your selection system
-        Cabbage c1 = c1_go.GetComponent<Cabbage>();
-        Cabbage c2 = c2_go.GetComponent<Cabbage>();
-
-        if (c1 == null || c2 == null)
-            return;
-
-        Cabbage c3 = Instantiate(temp_cabbage_prefab).GetComponent<Cabbage>(); // TODO: Matt or Nick need to instantiate the cabbage prefab beforehand to c3
-        c1.CrossBreed(c2, c3);
-
-        return;
+        gm.Splice_Selected();
     }
 
 
     private void Start()
     {
-        Clear_Selected_Panel(false);
-        Clear_Selected_Panel(true);
+        input_mng = FindObjectOfType<InputManager>();
+        gm = FindObjectOfType<GameManager>();
 
         // TODO: Nick make this work with your selection system
         // Example
