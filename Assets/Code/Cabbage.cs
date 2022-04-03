@@ -5,7 +5,8 @@ using UnityEngine;
 public class Cabbage : MonoBehaviour
 {
     public GeneticVector chromosome;
-    public float p_grown; // Percent Grown
+    public float mut_r;
+    public Vector2 size_constraint, weight_constraint;
 
     private MeshRenderer[] mrs;
     private ParticleSystem ps;
@@ -17,8 +18,13 @@ public class Cabbage : MonoBehaviour
     }
 
 
-    private void Update()
+    public void Set(GeneticVector chromosome, float mut_r, Vector2 size_constraint, Vector2 weight_constraint)
     {
+        this.chromosome = chromosome;
+        this.size_constraint = size_constraint;
+        this.weight_constraint = weight_constraint;
+        this.mut_r = mut_r;
+
         UpdateAppearance();
     }
 
@@ -44,5 +50,19 @@ public class Cabbage : MonoBehaviour
         {
             mr.material.color = color;
         }
+    }
+
+
+    public void CrossBreed(Cabbage other)
+    {
+        GeneticVector new_chromosome = chromosome.CrossOver(other.chromosome, Random.value, mut_r, size_constraint, weight_constraint);
+
+        // TODO
+        float new_mut_r = 0f;
+        Vector2 new_size_constraint = Vector2.zero;
+        Vector2 new_weight_constraint = Vector2.zero;
+        
+        Cabbage new_cabbage = null;
+        new_cabbage.Set(new_chromosome, new_mut_r, new_size_constraint, new_weight_constraint);
     }
 }
