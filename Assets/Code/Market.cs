@@ -74,7 +74,7 @@ public class Market : MonoBehaviour
         float size_component = size * size_prices[size_prices.Count - 1];
         float weight_component = weight * weight_prices[weight_prices.Count - 1];
         float nut_p_component = nut_p * nut_p_prices[nut_p_prices.Count - 1];
-        float color_component = color * color_prices[color_prices.Count - 1];
+        float color_component = CabbageMultiplier(color) * color_prices[color_prices.Count - 1];
 
         return size_component + weight_component + nut_p_component + color_component;
     }
@@ -147,13 +147,13 @@ public class Market : MonoBehaviour
         color_prices.Add(ExponentialMovingAverage(GenerateLogNormal(color_mu, LOG_NORMAL_SIGMA), color_prices[color_prices.Count - 1], EMA_ALPHA));
     }
 
-    private float CabbageMultiplier()
+    private float CabbageMultiplier(Color color)
     {
         float total_dist = 0f;
         float multiplier = 0f;
         foreach (ColorNode node in color_nodes)
         {
-            float dist = Vector4.Distance(node.color, Color.white);
+            float dist = Vector4.Distance(node.color, color);
             multiplier += (1f / (dist + 0.01f)) * node.mult;
             total_dist += (1f / (dist + 0.01f));
         }
