@@ -18,7 +18,7 @@ public class CreateLandPlots : MonoBehaviour
 
         // GameObject landPlotPrefab = gameObject;
 
-        for (int i = 1; i < plotNum; i++) {
+        for (int i = 0; i < plotNum; i++) {
 
             GameObject newPlot = Instantiate(landPlotPrefab);
             //newPlot.transform.parent = gameObject.transform.parent.Find("StaticHolder").Find("PlotPrefab");
@@ -30,7 +30,20 @@ public class CreateLandPlots : MonoBehaviour
             //print(xOfVec);
             newPlot.transform.position = landPlotPrefab.transform.position + new Vector3((i % 4) * 3, 0, (i / 4 - ((i % 4) / 4)) * -3);
 
+            PlotClass plotClass = newPlot.GetComponent<PlotClass>();
+            plotClass.InitPlot(i);
+
+            // for debug reasons 
+            GameObject debugCabbageObj = new GameObject();
+            debugCabbageObj.name = "Cabbage" + i;
+            plotClass.AddCabbage(debugCabbageObj);
+
+
+
+            newPlot.SetActive(true);
         }
+
+        landPlotPrefab.gameObject.SetActive(false);
 
     }
 
