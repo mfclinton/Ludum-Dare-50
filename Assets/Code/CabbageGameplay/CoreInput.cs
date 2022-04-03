@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class CoreInput : MonoBehaviour
 
 
 
-    void SelectCabbageCheck() {
+    void SelectCabbageCheck(int _whichTooltip) {
         // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = ~LayerMask.GetMask("Plot"); // 1 << 1;
 
@@ -35,21 +36,26 @@ public class CoreInput : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100, layerMask)) {
             Transform objectHit = hit.transform;
 
-            print("hit!");
+            //print("hit!");
             // Do something with the object that was hit by the raycast.
 
             // focus cabbage or empty plot
-            PlotClass plotClass = hit.transform.gameObject.GetComponent<PlotClass>();
+            GameObject plotObj = hit.transform.gameObject;
+            PlotClass plotClass = plotObj.GetComponent<PlotClass>();
+            //plotClass.HighlightPlot();
+            //Color startColor = plotObj.GetComponent<Renderer>().material.color;
+
             if (plotClass.attachedCabbage) {
-                tooltipClass.ShowCabbageTooltip(plotClass.attachedCabbage);
+                tooltipClass.ShowCabbageTooltip(plotClass.attachedCabbage, _whichTooltip);
             }
             else {
-                tooltipClass.ShowPlotTooltip();
+                tooltipClass.ShowPlotTooltip(_whichTooltip);
             }
         
         }
         else {
-            tooltipClass.HideTooltip();
+            // do this on esc press instead
+            //tooltipClass.HideTooltip();
         }
 
     }
@@ -60,10 +66,46 @@ public class CoreInput : MonoBehaviour
     {
 
         if (Input.GetMouseButtonDown(0)) {
-            SelectCabbageCheck();
+            SelectCabbageCheck(1);
+        }
+        if (Input.GetMouseButtonDown(1)) {
+            SelectCabbageCheck(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            //tooltipClass.HideTooltip(); // TODO deselect func
+            // press ESC to hide the other (make esc key button popup)
+
+            //print(tooltipClass.tooltipCabbage1);
+            //print(tooltipClass.tooltipCabbage2);
+            //print(tooltipClass.mostRecentlySetCabbageNonOverwrite);
+
+            //print(tooltipClass.GetTooltipFromId(1).name == tooltipClass.mostRecentlySetCabbageNonOverwrite.name);
+            //print(tooltipClass.GetTooltipFromId(2).name == tooltipClass.mostRecentlySetCabbageNonOverwrite.name);
+            //print(tooltipClass.GetTooltipFromId(1).name, tooltipClass.GetTooltipFromId(2).name, tooltipClass.mostRecentlySetCabbageNonOverwrite.name);
+
+            //if (tooltipClass.GetTooltipShownCount() == 1) {
+            tooltipClass.HideTooltip();
+            //}
+            //else if (tooltipClass.GetTooltipFromId(1) != null && tooltipClass.GetTooltipFromId(1) == tooltipClass.mostRecentlySetCabbageNonOverwrite) {
+            //    tooltipClass.HideTooltip(2);
+            //    print("hide 2");
+            //}
+            //else if (tooltipClass.GetTooltipFromId(2) != null && tooltipClass.GetTooltipFromId(2) == tooltipClass.mostRecentlySetCabbageNonOverwrite) {
+            //    tooltipClass.HideTooltip(1);
+            //    print("hide 1");
+            //}
+            //else {
+            //    // nothing to hide
+            //}
+
+
         }
 
 
+    }
 
+    private void print(string name1, string name2, string name3) {
+        print(name1 + " " + name2 + " " + name3);
     }
 }

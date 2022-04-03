@@ -14,7 +14,7 @@ public class TooltipClass : MonoBehaviour
         //[1] = tooltipCabbage1,
         //[2] = tooltipCabbage2
     };
-    private GameObject GetTooltipFromId(int _id) {
+    public GameObject GetTooltipFromId(int _id) {
         return tooltipDict[_id];
     }
     private void SetTooltipFromId(int _id, GameObject _val) {
@@ -22,11 +22,27 @@ public class TooltipClass : MonoBehaviour
         // bruh moment, idk if u can get refs
         if (_id == 1) {
             tooltipCabbage1 = _val;
+            tooltipDict[_id] = _val;
         }
         if (_id == 2) {
             tooltipCabbage2 = _val;
+            tooltipDict[_id] = _val;
         }
     }
+
+    public int GetTooltipShownCount() {
+        if (IsNoCabbageShown()) {
+            return 0;
+        } else if (IsOnlyFirstCabbageShown()) {
+            return 1;
+        } else if (IsOnlySecondCabbageShown()) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+
 
 
     private void Start() {
@@ -38,7 +54,8 @@ public class TooltipClass : MonoBehaviour
     private enum TooltipPopupType {
         NOTHING,
         PLOT,
-        CABBAGE
+        CABBAGE,
+        GENETICS
     }
 
 
@@ -56,6 +73,10 @@ public class TooltipClass : MonoBehaviour
 
     private bool HideCabbageIfAlreadyShown(GameObject _cabbageObj) {
 
+        if (IsNoCabbageShown()) {
+            mostRecentlySetCabbageNonOverwrite = null;
+        }
+
         if (tooltipCabbage1 == _cabbageObj) {
             HideTooltip(1);
             return true;
@@ -68,41 +89,56 @@ public class TooltipClass : MonoBehaviour
     }
 
 
-    public void ShowCabbageTooltip(GameObject _cabbageObj) {
+    public void ShowCabbageTooltip(GameObject _cabbageObj, int _whichTooltipId = 0) {
         //print("TODO show cabbage popup");
 
         if (HideCabbageIfAlreadyShown(_cabbageObj)) {
             return;
         }
 
+        int idToUse = _whichTooltipId;
         // show on second
         if (IsOnlyFirstCabbageShown()) {
+            if (idToUse == 0) {
+                idToUse = 2;
+            }
 
-            tooltipCabbage2 = _cabbageObj;
-            ShowTooltipInternal(TooltipPopupType.CABBAGE, 2);
-            mostRecentlySetCabbageNonOverwrite = tooltipCabbage2;
+            SetTooltipFromId(idToUse, _cabbageObj);
+            ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
+            mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
         }
 
         // show on first
         else if (IsOnlySecondCabbageShown() || IsNoCabbageShown()) {
+            if (idToUse == 0) {
+                idToUse = 1;
+            }
 
-            tooltipCabbage1 = _cabbageObj;
-            ShowTooltipInternal(TooltipPopupType.CABBAGE, 1);
-            mostRecentlySetCabbageNonOverwrite = tooltipCabbage1;
+            //tooltipCabbage1 = _cabbageObj;
+            SetTooltipFromId(idToUse, _cabbageObj);
+            ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
         }
 
         // if both full
         else {
 
 
-            if (mostRecentlySetCabbageNonOverwrite == tooltipCabbage1) {
-                tooltipCabbage2 = _cabbageObj;
-                ShowTooltipInternal(TooltipPopupType.CABBAGE, 1);
+            if (mostRecentlySetCabbageNonOverwrite == tooltipCabbage2) {
+                if (idToUse == 0) {
+                    idToUse = 2;
+                }
+                SetTooltipFromId(idToUse, _cabbageObj);
+                ShowTooltipInternal(TooltipPopupType.CABBAGE, 2);
+                mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
             }
 
-            else if (mostRecentlySetCabbageNonOverwrite == tooltipCabbage2) {
-                tooltipCabbage1 = _cabbageObj;
-                ShowTooltipInternal(TooltipPopupType.CABBAGE, 2);
+            else if (mostRecentlySetCabbageNonOverwrite == tooltipCabbage1) {
+                if (idToUse == 0) {
+                    idToUse = 1;
+                }
+                SetTooltipFromId(idToUse, _cabbageObj);
+                ShowTooltipInternal(TooltipPopupType.CABBAGE, idToUse);
+                mostRecentlySetCabbageNonOverwrite = GetTooltipFromId(idToUse);
             }
             else {
                 print("why is there no valid cabbage to overwrite tooltip");
@@ -118,30 +154,51 @@ public class TooltipClass : MonoBehaviour
     // TODO right click to deselect? some way to deselect by presing tooltip in easy UX manner
 
 
+    public void ShowGenetics() {
+        // only use top tooltip for now
+    }
+
+
     private void ShowTooltipInternal(TooltipPopupType _whatToShow, int _optTooltipID = 0) { // TODO pass cabbage class not gameobject?
         if (_whatToShow == TooltipPopupType.PLOT) {
             // assume accuracy, show on first
-            print("todo show plot tooltip on top tooltip");
+            //print("todo show plot tooltip on top tooltip");
         }
 
         if (_whatToShow == TooltipPopupType.CABBAGE) {
-            print("todo show tooltip for cabbage on given page");
+            //print("todo show tooltip for cabbage on given page");
+        }
+
+        if (_whatToShow == TooltipPopupType.GENETICS) {
+            //print("todo show tooltip for cabbage on given page");
         }
 
         if (_whatToShow == TooltipPopupType.NOTHING) {
-            print("todo replace tooltip with empty, or hide it idk");
+            //print("todo replace tooltip with empty, or hide it idk");
             if (_optTooltipID != 0) {
                 SetTooltipFromId(_optTooltipID, null);
-            } else {
+            }
+            else {
                 SetTooltipFromId(1, null);
                 SetTooltipFromId(2, null);
                 // TODO visuals
             }
         }
+
+        foreach (PlotClass plot in PlotManager.GetPlots()) {
+            if (plot.attachedCabbage == tooltipCabbage1) {
+                plot.HighlightPlot(PlotManager.HighlightTypes.FIRST);
+            } 
+            else if (plot.attachedCabbage == tooltipCabbage2) {
+                plot.HighlightPlot(PlotManager.HighlightTypes.SECOND);
+            }
+            else {
+                plot.HighlightPlot(PlotManager.HighlightTypes.NONE);
+            }
+        }
     }
 
-
-    public void ShowPlotTooltip() {
+    public void ShowPlotTooltip(int _whichTooltipId) {
 
         print("TODO show plot popup");
         if (IsNoCabbageShown()) {

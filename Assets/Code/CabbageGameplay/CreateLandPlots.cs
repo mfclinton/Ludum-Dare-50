@@ -32,6 +32,7 @@ public class CreateLandPlots : MonoBehaviour
 
             PlotClass plotClass = newPlot.GetComponent<PlotClass>();
             plotClass.InitPlot(i);
+            plotClass.gameObject.name = "Plot" + i;
 
             // for debug reasons 
             GameObject debugCabbageObj = new GameObject();
@@ -41,6 +42,8 @@ public class CreateLandPlots : MonoBehaviour
 
 
             newPlot.SetActive(true);
+
+            PlotManager.AddPlot(plotClass);
         }
 
         landPlotPrefab.gameObject.SetActive(false);
