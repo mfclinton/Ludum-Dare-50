@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     InputManager input_mng;
     UIManager uim;
     Market market;
+    MarketEvents market_events;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         input_mng = FindObjectOfType<InputManager>();
         market = FindObjectOfType<Market>();
+        market_events = FindObjectOfType<MarketEvents>();
         uim = FindObjectOfType<UIManager>();
 
         sales = new Dictionary<int, List<float>>();
@@ -40,6 +42,28 @@ public class GameManager : MonoBehaviour
     public void NextDay()
     {
         day += 1;
+        bool event_active_before = market_events.is_event_active;
+        market.AdvanceTimestep();
+        //if(event_active_before == false && market_events.is_event_active)
+        //{
+        //    // EVENT FIRED
+        //}
+        //else if (event_active_before == true && !market_events.is_event_active)
+        //{
+        //    // EVENT Endeded
+        //    // TODO: FIND OUT IF EVENTS CAN BE BACK TO BACK OR IF THERE IS ALWAYS A TRANSITION
+        //}
+
+        if(market_events.is_event_active)
+        {
+            MarketEvent m_event = market_events.active_event;
+            uim.Update_Event(m_event.flavour_text);
+        }
+        else
+        {
+            uim.Update_Event("NO NEWS TODAY");
+        }
+
         uim.Update_Day(day);
         uim.Update_Cash(cash);
     }

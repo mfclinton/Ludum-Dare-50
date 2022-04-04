@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text, day_text;
+    public TextMeshProUGUI cash_text, day_text, event_text;
 
     public void Set_Sale_Triggers()
     {
@@ -201,6 +201,11 @@ public class UIManager : MonoBehaviour
     public void Update_Day(float day)
     {
         day_text.text = "Day: " + day.ToString();
+    }
+
+    public void Update_Event(string text)
+    {
+        event_text.text = text;
     }
 
     private void Start()

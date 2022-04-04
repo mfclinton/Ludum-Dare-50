@@ -21,7 +21,8 @@ public class DayManager : MonoBehaviour
 
     public void TriggerNight()
     {
-        sun_setting = true;
+        if(!sun_setting && !growing && !sun_rising)
+            sun_setting = true;
     }
 
     void HandleNight()
@@ -97,7 +98,7 @@ public class DayManager : MonoBehaviour
             c.grown_p = Mathf.Lerp(c.grown_p, end_g_p, Time.deltaTime * growth_anim_speed);
             c.UpdateAppearance();
 
-            if (Mathf.Abs(c.grown_p - end_g_p) < 0.01f)
+            if (Mathf.Abs(c.grown_p - end_g_p) < 0.02f)
             {
                 c.grown_p = end_g_p;
                 c.UpdateAppearance();
@@ -113,7 +114,7 @@ public class DayManager : MonoBehaviour
     bool InterpolateSun(Color goal)
     {
         sun.color = Color.Lerp(sun.color, goal, Time.deltaTime * sun_speed);
-        if(Vector4.Distance(sun.color, goal) < 0.01f)
+        if(Vector4.Distance(sun.color, goal) < 0.1f)
         {
             sun.color = goal;
             return false;
