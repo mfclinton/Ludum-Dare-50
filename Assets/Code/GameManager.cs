@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         seeds = new List<GeneticVector>();
         seed_ids = new List<int>();
         next_id = 0;
+
+        uim.Update_Cash(cash);
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
     public void Sell(LandPlot plot)
     {
         Cabbage c = plot.cabbage;
-        float price = market.DetermineCabbageValue(c);
+        float price = Get_Price(c);
         cash += price;
 
         if (!sales.ContainsKey(day))
@@ -116,5 +118,13 @@ public class GameManager : MonoBehaviour
 
         plot.ClearPlot();
         Destroy(c.gameObject);
+
+        uim.Update_Cash(cash);
+    }
+
+    public float Get_Price(Cabbage c)
+    {
+        float price = market.DetermineCabbageValue(c);
+        return price;
     }
 }

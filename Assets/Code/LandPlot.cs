@@ -11,7 +11,7 @@ public class LandPlot : MonoBehaviour
         this.cabbage = cabbage;
 
         if (cabbage != null)
-            cabbage.gameObject.transform.position = transform.position + Vector3.up;
+            cabbage.gameObject.transform.position = transform.position + Vector3.up * 0.5f;
     }
 
 

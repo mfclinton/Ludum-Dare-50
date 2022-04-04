@@ -75,6 +75,8 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
+    public TextMeshProUGUI cash_text;
+
     public void Set_Sale_Triggers()
     {
         for (int i = 0; i < selected_ui_panels.Length; i++)
@@ -120,6 +122,9 @@ public class UIManager : MonoBehaviour
         {
             splice_button.SetActive(true);
         }
+
+        TextMeshProUGUI price = selected_ui_panels[selected_index].sale_button.GetComponentInChildren<TextMeshProUGUI>();
+        price.text = "$" + gm.Get_Price(selected).ToString("0.00");
     }
 
 
@@ -175,6 +180,11 @@ public class UIManager : MonoBehaviour
     public void Destroy_Seed()
     {
         Destroy(selected_seed.gameObject);
+    }
+
+    public void Update_Cash(float cash)
+    {
+        cash_text.text = "$" + cash.ToString("0.00");
     }
 
     private void Start()
