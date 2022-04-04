@@ -163,7 +163,7 @@ MonoBehaviour:
     - 0.6
     - 3
     - 1
-    flavour_text: Christmas is coming! Tis the season to enjoy red cabbage.
+    flavour_text: The holidays are coming! Tis the season to enjoy red cabbage.
   - size_change: -1
     weight_change: -1
     nut_p_change: -2
@@ -182,10 +182,65 @@ MonoBehaviour:
     - 0.7
     flavour_text: Spooky scary skellingtons are coming! Prepare to make your Halloween
       cabbages?
+  - size_change: 5
+    weight_change: 6
+    nut_p_change: -1
+    color_change: -2
+    volatility_change: 0.1
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: "It\u2019s getting hot and lacking rain here, so farmers better
+      sell all their big and juicy cabbages!"
   - size_change: -1
     weight_change: -1
-    nut_p_change: -2
-    color_change: 5
+    nut_p_change: -1
+    color_change: 4
+    volatility_change: 0.1
+    color_multipliers:
+    - 0.6
+    - 0.6
+    - 0.7
+    - 1.1
+    - 1.2
+    - 1.5
+    - 0.9
+    - 0.9
+    - 1.6
+    - 1.1
+    flavour_text: After the biggest drought to ever hit, people are getting less
+      picky with how their food looks. This is leading to more discolored fruits
+      and veggies hitting shelves.
+  - size_change: 0
+    weight_change: 0
+    nut_p_change: 0
+    color_change: 0
+    volatility_change: -0.5
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: 'New legislation regulating cabbage markets is now in effect. Will
+      this stabilize the cabbage market and for how long? '
+  - size_change: -1
+    weight_change: 0
+    nut_p_change: 7
+    color_change: -1
     volatility_change: 0
     color_multipliers:
     - 0.5
@@ -198,5 +253,95 @@ MonoBehaviour:
     - 0.6
     - 1.5
     - 0.7
-    flavour_text: Unfinished event
+    flavour_text: The national food administration ranked cabbage as the #3 best
+      sources of Vitamin K from food.
+  - size_change: 3
+    weight_change: 3
+    nut_p_change: 3
+    color_change: 3
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: 'More and more celebrities have been pushing cabbage as a skin
+      lubricator. '
+  - size_change: -7
+    weight_change: -7
+    nut_p_change: -7
+    color_change: -7
+    volatility_change: 0.5
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: TECH BUBBLE POPS. STOCK MARKET COLLAPSES A RECORD 25% IN ONE DAY.
+  - size_change: 2
+    weight_change: 4
+    nut_p_change: -1
+    color_change: -2
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: 'Millennials seeking more food for their ever shrinking dollar
+      look towards heavy cabbages to make ends meet. '
+  - size_change: 0
+    weight_change: 0
+    nut_p_change: 0
+    color_change: 3
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 3
+    - 1.5
+    - 0.7
+    flavour_text: A new study from MIT found that the bluer the cabbage, the more
+      cancer preventing antibiotics it contains.
+  - size_change: 5
+    weight_change: 5
+    nut_p_change: 5
+    color_change: 5
+    volatility_change: 0.1
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: Moncabgo Crankee Stadium was named after the largest cabbage producer
+      in the world following a reported $121 billion deal.
   market: {fileID: 0}

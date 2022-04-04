@@ -34,12 +34,12 @@ public class MarketEvents : MonoBehaviour
         active_event = null;
         active_event_days_remaining = 0;
 
-        time_until_event = GenerateDiscretePoisson(MEAN_DAYS_TIL_NEXT_EVENT);
+        time_until_event = 3;
 
         // Don't start firing events until 5 days in.
-        if (time_until_event < 5)
+        if (time_until_event < 3)
         {
-            time_until_event = 5;
+            time_until_event = 3;
         }
     }
 
