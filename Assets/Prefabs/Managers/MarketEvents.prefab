@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9062966076001558253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9062966076001558255}
+  - component: {fileID: 9062966076001558252}
+  m_Layer: 0
+  m_Name: MarketEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9062966076001558255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062966076001558253}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9062966076001558252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9062966076001558253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e99df8d2cd93a4982b0e469a1e8e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time_until_event: 0
+  active_event_days_remaining: 0
+  is_event_active: 0
+  active_event:
+    size_change: 0
+    weight_change: 0
+    nut_p_change: 0
+    color_change: 0
+    volatility_change: 0
+    color_multipliers: []
+    flavour_text: 
+  market_events:
+  - size_change: -4
+    weight_change: -4
+    nut_p_change: 1
+    color_change: 1
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: 'It''s rainy season! All the local cabbage farmers will have large,
+      juicy crops.  '
+  - size_change: 0
+    weight_change: 5
+    nut_p_change: -2
+    color_change: 0
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: 'Oktoberfest is coming! Sauerkraut producers will be looking for
+      a larger cabbage with a lower percentage of water.  '
+  - size_change: -8
+    weight_change: -4
+    nut_p_change: 6
+    color_change: 6
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: "In the latest episode of Gordon Ramsey\u2019s hit show, ratings
+      were astronomical after contestant Valentyna Lugo\u2019s winning petite cabbage
+      dish was revealed; sealing her victory in the season finale. "
+  market: {fileID: 0}

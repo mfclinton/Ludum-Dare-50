@@ -53,7 +53,7 @@ public class Market : MonoBehaviour
         WarmupPrices();
     }
 
-    private float DetermineCabbageValue(Cabbage cabbage)
+    public float DetermineCabbageValue(Cabbage cabbage)
     {
         GeneticVector genetic_vector = cabbage.chromosome;
 

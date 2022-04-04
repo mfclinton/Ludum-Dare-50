@@ -9,6 +9,9 @@ public class LandPlot : MonoBehaviour
     public void SetCabbage(Cabbage cabbage)
     {
         this.cabbage = cabbage;
+
+        if (cabbage != null)
+            cabbage.gameObject.transform.position = transform.position + Vector3.up;
     }
 
 

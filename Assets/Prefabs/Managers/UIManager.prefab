@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8059065466695254743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8059065466695254729}
+  - component: {fileID: 8059065466695254728}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8059065466695254729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059065466695254743}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8059065466695254728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059065466695254743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a99cb11ab49ec4890ab901c38489da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splice_button: {fileID: 0}
+  selected_ui_panels:
+  - panel: {fileID: 0}
+    sale_button: {fileID: 0}
+    entries:
+    - id: 0
+      panel: {fileID: 0}
+    - id: 1
+      panel: {fileID: 0}
+    - id: 2
+      panel: {fileID: 0}
+  - panel: {fileID: 0}
+    sale_button: {fileID: 0}
+    entries:
+    - id: 0
+      panel: {fileID: 0}
+    - id: 1
+      panel: {fileID: 0}
+    - id: 2
+      panel: {fileID: 0}
+  cabbage_info_entries:
+  - id: 0
+    cabbage_info:
+    - thresh: 0.33
+      text: SMALL
+      icon: {fileID: -2542927779889279856, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+    - thresh: 0.66
+      text: MEDIUM
+      icon: {fileID: 6852133268939615318, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+    - thresh: 1
+      text: LARGE
+      icon: {fileID: 3668429462043007928, guid: b1634e65fafa0cb48b6ae7d6c3aea264, type: 3}
+  - id: 1
+    cabbage_info:
+    - thresh: 0.4
+      text: LIGHT
+      icon: {fileID: 1758972571841800037, guid: fc46d1ffb4d49954b8467f0f66a09fa6, type: 3}
+    - thresh: 1
+      text: HEAVY
+      icon: {fileID: 2168956216262177909, guid: fc46d1ffb4d49954b8467f0f66a09fa6, type: 3}
+  - id: 2
+    cabbage_info:
+    - thresh: 0.33
+      text: POOR
+      icon: {fileID: 5597893724768073616, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+    - thresh: 0.66
+      text: OKAY
+      icon: {fileID: -8826332578847178749, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+    - thresh: 1
+      text: Nutritious
+      icon: {fileID: 3757961782091253725, guid: fffcaaa6130624a4fae5163ef70dd08e, type: 3}
+  displayed_traits: 000000000100000002000000

@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
-    public int max_selected = 2;
+    int max_selected;
     public Camera cam;
 
     UIManager ui;
+    GameManager gm;
     int selected_index_pointer;
     List<LandPlot> selected_plots;
+    List<int> display_indexes;
+    int selected_seed;
 
     void Start()
     {
         // cam = Camera.main;
         ui = FindObjectOfType<UIManager>();
+        gm = FindObjectOfType<GameManager>();
+        max_selected = ui.selected_ui_panels.Length;
 
         ClearSelected();
     }
@@ -79,9 +85,9 @@ public class InputManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, layer_mask))
+        if (Physics.Raycast(ray, out hit, 1000, layer_mask))
         {
-            print(hit);
+            print(hit.transform.name);
             GameObject object_hit = hit.transform.gameObject;
 
             // Check Components
@@ -94,6 +100,7 @@ public class InputManager : MonoBehaviour
             // do this on esc press instead
             //tooltipClass.HideTooltip();
             ClearSelected();
+            print("Clear");
         }
 
         return null;
@@ -106,10 +113,19 @@ public class InputManager : MonoBehaviour
         if (found_plot != null)
             return;
 
+        if (selected_seed != -1)
+        {
+            gm.Plant_Cabbage(selected_seed, lp);
+        }
+
         if (selected_plots.Count == max_selected)
+        {
             selected_plots.RemoveAt(selected_index_pointer);
+            display_indexes.RemoveAt(selected_index_pointer);
+        }
 
         selected_plots.Insert(selected_index_pointer, lp);
+        display_indexes.Insert(selected_index_pointer, selected_index_pointer);
 
         if (lp.cabbage != null)
         {
@@ -123,6 +139,8 @@ public class InputManager : MonoBehaviour
     {
         selected_index_pointer = 0;
         selected_plots = new List<LandPlot>();
+        display_indexes = new List<int>();
+        selected_seed = -1;
         ui.Clear_All_Panels();
     }
 
@@ -130,5 +148,28 @@ public class InputManager : MonoBehaviour
     {
         print(selected_plots.Count);
         return selected_plots.Where(lp => lp.cabbage != null).Select(lp => lp.cabbage);
+    }
+
+    public void Sell(int index)
+    {
+        int selected_plot_index = display_indexes.Select((date_i, idx) => new {di = date_i, i = idx}).First(obj => obj.di == index).i;
+
+        LandPlot plot = selected_plots[selected_plot_index];
+
+        // Clean Up
+        selected_index_pointer = selected_plot_index;
+        selected_plots.RemoveAt(selected_plot_index);
+        display_indexes.RemoveAt(selected_plot_index);
+
+        ui.Clear_Selected_Panel(index);
+
+        gm.Sell(plot);
+    }
+
+    public void Set_Selected_Seed(int id, Image img)
+    {
+        ui.DeSelect_Seed();
+        selected_seed = id;
+        ui.Select_Seed(img);
     }
 }

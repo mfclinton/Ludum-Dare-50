@@ -9,14 +9,29 @@ public class GameManager : MonoBehaviour
     public GameObject cabbage_model_prefab;
     public int day;
     public float cash;
+    public List<GeneticVector> seeds;
+    public List<int> seed_ids;
 
     public float mut_r, max_size, max_weight;
+    int next_id;
 
     InputManager input_mng;
+    UIManager uim;
+    Market market;
+
+    // Data Tracking
+    Dictionary<int, List<float>> sales;
 
     private void Start()
     {
         input_mng = FindObjectOfType<InputManager>();
+        market = FindObjectOfType<Market>();
+        uim = FindObjectOfType<UIManager>();
+
+        sales = new Dictionary<int, List<float>>();
+        seeds = new List<GeneticVector>();
+        seed_ids = new List<int>();
+        next_id = 0;
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
@@ -30,14 +45,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void Splice_Selected()
+    public (GeneticVector, int) Splice_Selected()
     {
         List<GeneticVector> chromosomes = input_mng.GetSelectedCabbages()
             .Select(cabbage => cabbage.chromosome).ToList();
 
         print(chromosomes.Count);
         if (chromosomes.Count < 2)
-            return;
+            return (null, -1);
 
         while(1 < chromosomes.Count)
         {
@@ -60,10 +75,46 @@ public class GameManager : MonoBehaviour
         }
 
         GeneticVector new_chromosome = chromosomes[0];
+        int index = seeds.Count;
+        seed_ids.Insert(index, next_id);
+        next_id++;
+        seeds.Insert(index, new_chromosome);
+        return (new_chromosome, next_id - 1);
+    }
+
+    public void Plant_Cabbage(int seed_id, LandPlot plot)
+    {
+        int index = seed_ids.Select((seed_id, idx) => new { id = seed_id, i = idx }).First(obj => obj.id == seed_id).i;
+        GeneticVector new_chromosome = seeds[index];
+        Cabbage new_cabbage = Create_Cabbage(new_chromosome);
+
+        plot.SetCabbage(new_cabbage);
+        seeds.RemoveAt(index);
+        seed_ids.RemoveAt(index);
+
+        uim.Destroy_Seed();
+    }
+
+    public Cabbage Create_Cabbage(GeneticVector new_chromosome)
+    {
         GameObject new_cabbage_model = Instantiate(cabbage_model_prefab);
         Cabbage new_cabbage = new_cabbage_model.AddComponent<Cabbage>();
         new_cabbage.Set(new_chromosome, max_size, max_weight);
+        return new_cabbage;
+    }
 
-        // TODO: do something with the new cabbage? Temp?
+    public void Sell(LandPlot plot)
+    {
+        Cabbage c = plot.cabbage;
+        float price = market.DetermineCabbageValue(c);
+        cash += price;
+
+        if (!sales.ContainsKey(day))
+            sales[day] = new List<float>();
+
+        sales[day].Add(price);
+
+        plot.ClearPlot();
+        Destroy(c.gameObject);
     }
 }

@@ -57,6 +57,8 @@ public class Cabbage_Info_Helper
 [System.Serializable]
 public class Selected_UI_Panel
 {
+    public GameObject panel;
+    public Button sale_button;
     public Selected_UI_Entry[] entries;
 }
 
@@ -64,9 +66,24 @@ public class UIManager : MonoBehaviour
 {
     InputManager input_mng;
     GameManager gm;
+    Image selected_seed;
+    public GameObject splice_button;
+    public Transform seed_panel;
+    public Image seed_image_prefab;
+
     public Selected_UI_Panel[] selected_ui_panels;
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
+
+    public void Set_Sale_Triggers()
+    {
+        for (int i = 0; i < selected_ui_panels.Length; i++)
+        {
+            int temp = i;
+            selected_ui_panels[i].sale_button
+                .onClick.AddListener(() => input_mng.Sell(temp));
+        }
+    }
 
     /// <summary>
     /// Updates the selected panel for the given cabbage
@@ -75,6 +92,7 @@ public class UIManager : MonoBehaviour
     /// <param name="selected">The selected cabbage</param>
     public void Update_Selected_Panel(int selected_index, Cabbage selected)
     {
+        selected_ui_panels[selected_index].panel.SetActive(true);
         Dictionary<GeneticVector.TRAIT_ID, float> dict = selected.GetObservableGeneticDict();
         Selected_UI_Entry[] ui_elements = selected_ui_panels[selected_index].entries;
 
@@ -97,23 +115,18 @@ public class UIManager : MonoBehaviour
             Image icon = element.panel.GetComponentsInChildren<Image>().First(x => x.gameObject != element.panel.gameObject);
             icon.sprite = dci.icon;
         }
+
+        if(1 < selected_ui_panels.Count(sup => sup.panel.activeSelf == true))
+        {
+            splice_button.SetActive(true);
+        }
     }
 
 
     public void Clear_Selected_Panel(int selected_index)
     {
-        Selected_UI_Entry[] ui_elements = selected_ui_panels[selected_index].entries;
-        if (selected_index == 1)
-            ui_elements = selected_ui_panels[selected_index].entries;
-
-        foreach (GeneticVector.TRAIT_ID t_id in Enum.GetValues(typeof(GeneticVector.TRAIT_ID)))
-        {
-            if (!ui_elements.Any(ui_elem => ui_elem.id == t_id))
-                continue;
-
-            Selected_UI_Entry element = ui_elements.First(ui_elem => ui_elem.id == t_id);
-            element.panel.gameObject.SetActive(false);
-        }
+        selected_ui_panels[selected_index].panel.SetActive(false);
+        splice_button.SetActive(false);
     }
 
 
@@ -123,6 +136,8 @@ public class UIManager : MonoBehaviour
         {
             Clear_Selected_Panel(i);
         }
+
+        DeSelect_Seed();
     }
 
 
@@ -131,18 +146,42 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Trigger_Splice()
     {
-        gm.Splice_Selected();
+        (GeneticVector gv, int id) = gm.Splice_Selected();
+        Image seed_img = Instantiate(seed_image_prefab, seed_panel);
+        seed_img.color = new Color(gv.color.r, gv.color.g, gv.color.b, 0.5f);
+        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * gv.size_p;
+
+        Button button = seed_img.GetComponent<Button>();
+        button.onClick.AddListener(() => input_mng.Set_Selected_Seed(id, seed_img));
     }
 
+    public void Select_Seed(Image new_seed)
+    {
+        selected_seed = new_seed;
+        Color c = selected_seed.color;
+        selected_seed.color = new Color(c.r, c.g, c.b, 1f);
+    }
+
+    public void DeSelect_Seed()
+    {
+        if (selected_seed == null)
+            return;
+
+        Color c = selected_seed.color;
+        selected_seed.color = new Color(c.r, c.g, c.b, 0.5f);
+        selected_seed = null;
+    }
+
+    public void Destroy_Seed()
+    {
+        Destroy(selected_seed.gameObject);
+    }
 
     private void Start()
     {
         input_mng = FindObjectOfType<InputManager>();
         gm = FindObjectOfType<GameManager>();
 
-        // TODO: Nick make this work with your selection system
-        // Example
-        //Cabbage cabbage = FindObjectOfType<Cabbage>();
-        //Update_Selected_Panel(true, cabbage);
+        Set_Sale_Triggers();
     }
 }
