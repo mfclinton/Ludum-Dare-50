@@ -6,7 +6,9 @@ public class Cabbage : MonoBehaviour
 {
     public GeneticVector chromosome;
     public float grown_p, max_size, max_weight;
+    public LandPlot plot;
 
+    float size_addon = 0.25f;
     private MeshRenderer[] mrs;
     private ParticleSystem ps;
     private Animator anim;
@@ -53,7 +55,7 @@ public class Cabbage : MonoBehaviour
         ps_shape.radius = size;
 
         // Updates the mesh
-        transform.localScale = new Vector3(size, size, size);
+        transform.localScale = new Vector3(size, size, size) + Vector3.one * size_addon;
         foreach (MeshRenderer mr in mrs)
         {
             mr.material.color = color;

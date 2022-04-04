@@ -116,8 +116,8 @@ public class GameManager : MonoBehaviour
         if (max_splices <= n_splices_today)
             return (null, -1);
 
-        List<GeneticVector> chromosomes = input_mng.GetSelectedCabbages()
-            .Select(cabbage => cabbage.chromosome).ToList();
+        IEnumerable<Cabbage> cabbages = input_mng.GetSelectedCabbages();
+        List<GeneticVector> chromosomes = cabbages.Select(cabbage => cabbage.chromosome).ToList();
 
         if (chromosomes.Count < 2)
             return (null, -1);
@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour
         
         n_splices_today++;
         uim.Update_N_Splices(n_splices_today, max_splices);
+
+        foreach (Cabbage c in cabbages)
+            ClearPlot(c.plot);
+
+        uim.Clear_All_Panels();
 
         return AddNewSeed(new_chromosome);
     }
@@ -219,6 +224,12 @@ public class GameManager : MonoBehaviour
         float price = Get_Price(c);
         Update_Cash(price);
 
+        ClearPlot(plot);
+    }
+
+    public void ClearPlot(LandPlot plot)
+    {
+        Cabbage c = plot.cabbage;
         plot.ClearPlot();
         Destroy(c.gameObject);
     }

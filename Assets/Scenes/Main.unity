@@ -1237,7 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966628125773282840, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: growth_gain
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7448076166890863092, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: m_RootOrder
@@ -2915,7 +2915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966628125773282840, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: growth_gain
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7448076166890863092, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: m_RootOrder
@@ -3649,7 +3649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966628125773282840, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: growth_gain
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7448076166890863092, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: m_RootOrder
@@ -4168,7 +4168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 391.26855, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655762104
@@ -4374,7 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aab2949d6fc5aa4b9e44182ff8163fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: -10
+  cost: -30
   cost_text: {fileID: 554133428}
   invoked_method:
     m_PersistentCalls:
@@ -5020,7 +5020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966628125773282840, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: growth_gain
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7448076166890863092, guid: f6a5124d8472fd0429082c3ee80ce38d, type: 3}
       propertyPath: m_RootOrder
@@ -5544,6 +5544,10 @@ PrefabInstance:
       propertyPath: sun
       value: 
       objectReference: {fileID: 705507994}
+    - target: {fileID: 3610841765258624107, guid: 4eea2edf5d8fa48488662923a540063c, type: 3}
+      propertyPath: growth_anim_speed
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eea2edf5d8fa48488662923a540063c, type: 3}
 --- !u!23 &3634964455205700905
@@ -6028,6 +6032,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7663101185246215118, guid: 30cbc4d4c8e3f014ca449c9fed8d0e9b, type: 3}
+      propertyPath: good_event_chance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663101185246215118, guid: 30cbc4d4c8e3f014ca449c9fed8d0e9b, type: 3}
+      propertyPath: daily_event_chance
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cbc4d4c8e3f014ca449c9fed8d0e9b, type: 3}
 --- !u!23 &7812485009615087785
@@ -6229,6 +6241,10 @@ PrefabInstance:
       propertyPath: cabbage_info_entries.Array.data[2].cabbage_info.Array.data[2].text
       value: '% Vitamin K'
       objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[1].thresh
+      value: 0.99
+      objectReference: {fileID: 0}
     - target: {fileID: 8059065466695254729, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6402,7 +6418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: cash
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: mut_r
@@ -6410,7 +6426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: max_size
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: max_weight
