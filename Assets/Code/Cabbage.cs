@@ -9,11 +9,13 @@ public class Cabbage : MonoBehaviour
 
     private MeshRenderer[] mrs;
     private ParticleSystem ps;
+    private Animator anim;
 
     private void Awake()
     {
         mrs = GetComponentsInChildren<MeshRenderer>();
         ps = GetComponentInChildren<ParticleSystem>();
+        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -55,6 +57,18 @@ public class Cabbage : MonoBehaviour
         foreach (MeshRenderer mr in mrs)
         {
             mr.material.color = color;
+        }
+
+        if(grown_p == 1)
+        {
+            print("GROWN");
+            anim.speed = 1f;
+            anim.SetTrigger("fully_grown");
+        }
+        else
+        {
+            anim.speed = 0f;
+            anim.Play("cabbage_bloom", -1, grown_p);
         }
     }
 

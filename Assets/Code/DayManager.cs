@@ -98,7 +98,10 @@ public class DayManager : MonoBehaviour
             c.UpdateAppearance();
 
             if (Mathf.Abs(c.grown_p - end_g_p) < 0.01f)
+            {
                 c.grown_p = end_g_p;
+                c.UpdateAppearance();
+            }
             else
                 growing = true;
         }

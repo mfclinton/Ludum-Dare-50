@@ -113,9 +113,14 @@ public class InputManager : MonoBehaviour
         if (found_plot != null)
             return;
 
-        if (selected_seed != -1)
+        if (selected_seed != -1 && lp.cabbage == null)
         {
             gm.Plant_Cabbage(selected_seed, lp);
+            ClearSelected();
+        }
+        else if (selected_seed != -1)
+        {
+            ClearSelected();
         }
 
         if (selected_plots.Count == max_selected)
