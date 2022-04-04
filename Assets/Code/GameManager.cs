@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
             // GAME OVER
             game_over = true;
             event_audio.PlayLoseSound();
+            uim.Game_Over();
         }
     }
 
