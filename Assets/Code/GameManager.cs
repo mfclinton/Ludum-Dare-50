@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         next_id = 0;
 
         uim.Update_Cash(cash);
+        uim.Update_Day(day);
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array

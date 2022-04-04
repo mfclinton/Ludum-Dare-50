@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text;
+    public TextMeshProUGUI cash_text, day_text;
 
     public void Set_Sale_Triggers()
     {
@@ -154,7 +154,7 @@ public class UIManager : MonoBehaviour
         (GeneticVector gv, int id) = gm.Splice_Selected();
         Image seed_img = Instantiate(seed_image_prefab, seed_panel);
         seed_img.color = new Color(gv.color.r, gv.color.g, gv.color.b, 0.5f);
-        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * gv.size_p;
+        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Clamp(gv.size_p, 0.25f, 1f); // Clamp to prevent SO SMOL
 
         Button button = seed_img.GetComponent<Button>();
         button.onClick.AddListener(() => input_mng.Set_Selected_Seed(id, seed_img));
@@ -185,6 +185,11 @@ public class UIManager : MonoBehaviour
     public void Update_Cash(float cash)
     {
         cash_text.text = "$" + cash.ToString("0.00");
+    }
+
+    public void Update_Day(float day)
+    {
+        day_text.text = "Day: " + day.ToString();
     }
 
     private void Start()
