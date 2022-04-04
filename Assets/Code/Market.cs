@@ -12,7 +12,8 @@ public class ColorNode
 public class Market : MonoBehaviour
 {
     // Variables for changing the market
-    public List<ColorNode> color_nodes;
+    public ColorNode[] color_nodes;
+    public ColorNode[] active_color_nodes;
 
     public const float SIZE_MEAN = 10f;
     public const float WEIGHT_MEAN = 10f;
@@ -22,7 +23,7 @@ public class Market : MonoBehaviour
     public const float LOG_NORMAL_SIGMA = 0.75f;
 
     private const int ALGO_WARMUP_TIMESTEPS = 50;
-    private const float EMA_ALPHA = 0.05f;
+    private float EMA_ALPHA = 0.05f;
 
     // Pricing arrays
     public List<float> size_prices;
@@ -41,6 +42,7 @@ public class Market : MonoBehaviour
         weight_prices = new List<float>();
         nut_p_prices = new List<float>();
         color_prices = new List<float>();
+        active_color_nodes = color_nodes;
 
         // Compute parameters for log normal distribution based on desired mean
         size_mu = DeriveLogNormalMu(SIZE_MEAN, LOG_NORMAL_SIGMA);
@@ -67,6 +69,42 @@ public class Market : MonoBehaviour
     public void AdvanceTimestep()
     {
         GenerateNextPrices();
+    }
+
+    public void DoMarketEvent(MarketEvent mkt_event)
+    {
+        size_mu = DeriveLogNormalMu(SIZE_MEAN + mkt_event.size_change, LOG_NORMAL_SIGMA + mkt_event.volatility_change);
+        weight_mu = DeriveLogNormalMu(WEIGHT_MEAN + mkt_event.weight_change, LOG_NORMAL_SIGMA + mkt_event.volatility_change);
+        nut_p_mu = DeriveLogNormalMu(NUT_P_MEAN + mkt_event.nut_p_change, LOG_NORMAL_SIGMA + mkt_event.volatility_change);
+        color_mu = DeriveLogNormalMu(COLOR_MEAN + mkt_event.color_change, LOG_NORMAL_SIGMA + mkt_event.volatility_change);
+        EMA_ALPHA += mkt_event.volatility_change;
+
+        if (active_color_nodes.Length != mkt_event.color_multipliers.Length)
+        {
+            Debug.Log("Color multiplier array length does not match active color node array length");
+            throw new System.Exception("Color multiplier array length does not match active color node array length");
+        }
+
+        for (int i = 0; i < active_color_nodes.Length; i++)
+        {
+            active_color_nodes[i].mult = mkt_event.color_multipliers[i];
+        }
+
+    }
+
+    public void RevertMarketEvent(MarketEvent mkt_event)
+    {
+        size_mu = DeriveLogNormalMu(SIZE_MEAN - mkt_event.size_change, LOG_NORMAL_SIGMA - mkt_event.volatility_change);
+        weight_mu = DeriveLogNormalMu(WEIGHT_MEAN - mkt_event.weight_change, LOG_NORMAL_SIGMA - mkt_event.volatility_change);
+        nut_p_mu = DeriveLogNormalMu(NUT_P_MEAN - mkt_event.nut_p_change, LOG_NORMAL_SIGMA - mkt_event.volatility_change);
+        color_mu = DeriveLogNormalMu(COLOR_MEAN - mkt_event.color_change, LOG_NORMAL_SIGMA - mkt_event.volatility_change);
+        EMA_ALPHA -= mkt_event.volatility_change;
+
+        for (int i = 0; i < active_color_nodes.Length; i++)
+        {
+            active_color_nodes[i].mult = color_nodes[i].mult;
+        }
+
     }
 
     private float CabbagePrice(float size, float weight, float nut_p, Color color)
@@ -151,7 +189,7 @@ public class Market : MonoBehaviour
     {
         float total_dist = 0f;
         float multiplier = 0f;
-        foreach (ColorNode node in color_nodes)
+        foreach (ColorNode node in active_color_nodes)
         {
             float dist = Vector4.Distance(node.color, color);
             multiplier += (1f / (dist + 0.01f)) * node.mult;
