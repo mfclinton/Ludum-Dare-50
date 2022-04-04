@@ -12,13 +12,16 @@ public class GameManager : MonoBehaviour
     public List<GeneticVector> seeds;
     public List<int> seed_ids;
 
-    public float mut_r, max_size, max_weight;
+    public float mut_r, max_size, max_weight, next_upkeep;
     int next_id, n_splices_today;
+
+    public bool game_over;
 
     InputManager input_mng;
     UIManager uim;
     Market market;
     MarketEvents market_events;
+    UpkeepEvents upkeep_events;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -29,11 +32,14 @@ public class GameManager : MonoBehaviour
         market = FindObjectOfType<Market>();
         market_events = FindObjectOfType<MarketEvents>();
         uim = FindObjectOfType<UIManager>();
+        upkeep_events = FindObjectOfType<UpkeepEvents>();
 
         sales = new Dictionary<int, List<float>>();
         seeds = new List<GeneticVector>();
         seed_ids = new List<int>();
         next_id = 0;
+
+        GetNextUpkeep();
 
         n_splices_today = 0;
 
@@ -42,8 +48,25 @@ public class GameManager : MonoBehaviour
         uim.Update_Day(day);
     }
 
+    public void GetNextUpkeep()
+    {
+        UpkeepEntry upkeep_entry;
+        (next_upkeep, upkeep_entry) = upkeep_events.GetTodaysCashChange();
+        uim.Update_Upkeep(next_upkeep, upkeep_entry);
+    }
+
+    public void ProcessUpkeep()
+    {
+        Update_Cash(next_upkeep);
+    }
+
     public void NextDay()
     {
+        if (game_over)
+            return;
+
+        ProcessUpkeep(); // CAN LOSE HERE
+
         day += 1;
         bool event_active_before = market_events.is_event_active;
         market_events.AdvanceMarketState();
@@ -67,9 +90,11 @@ public class GameManager : MonoBehaviour
             uim.Update_Event("NO NEWS TODAY");
         }
 
-        n_splices_today = 0;
+        GetNextUpkeep();
 
+        n_splices_today = 0;
         uim.Update_N_Splices(n_splices_today, max_splices);
+
         uim.Update_Day(day);
         uim.Update_Cash(cash);
         uim.Clear_All_Panels();
@@ -170,15 +195,16 @@ public class GameManager : MonoBehaviour
         sales[day].Add(cash_change);
         uim.Update_Cash(cash);
 
-        if(cash <= 0)
+        if(cash < 0)
         {
             // GAME OVER
+            game_over = true;
         }
     }
 
     public bool Buy(float cost)
     {
-        if(0f < cash + cost)
+        if(0f <= cash + cost)
         {
             Update_Cash(cost);
             return true;

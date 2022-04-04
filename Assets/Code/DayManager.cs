@@ -21,6 +21,9 @@ public class DayManager : MonoBehaviour
 
     public void TriggerNight()
     {
+        if (gm.game_over)
+            return;
+
         if(!sun_setting && !growing && !sun_rising)
             sun_setting = true;
     }

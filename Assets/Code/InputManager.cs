@@ -72,7 +72,7 @@ public class InputManager : MonoBehaviour
 
     public object Raycast()
     {
-        if (IsPointerOverUIElement(GetEventSystemRaycastResults()))
+        if (IsPointerOverUIElement(GetEventSystemRaycastResults()) || gm.game_over)
         {
             // TODO Make this efficient, double raycasting rn;
             return null;

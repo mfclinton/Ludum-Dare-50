@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text;
+    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text;
 
     public void Set_Sale_Triggers()
     {
@@ -205,7 +205,11 @@ public class UIManager : MonoBehaviour
 
     public void Update_Cash(float cash)
     {
-        cash_text.text = "$" + cash.ToString("0.00");
+        string before_str = "$";
+        if (cash < 0)
+            before_str = "-" + before_str;
+
+        cash_text.text = before_str + Mathf.Abs(cash).ToString("0.0");
     }
 
     public void Update_Day(float day)
@@ -222,6 +226,19 @@ public class UIManager : MonoBehaviour
     public void Update_N_Splices(int n_splices_today, int max_splices)
     {
         n_splices_text.text = "USED " + n_splices_today.ToString() + "/" + max_splices.ToString();
+    }
+
+    public void Update_Upkeep(float days_cash_change, UpkeepEntry ue)
+    {
+        string before_str = "$";
+        if (days_cash_change < 0)
+            before_str = "-" + before_str;
+        upkeep_text.text = before_str + Mathf.Abs(days_cash_change).ToString("0.0");
+
+        if(ue != null)
+        {
+            // CHANGE
+        }
     }
 
     private void Start()
