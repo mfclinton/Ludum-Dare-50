@@ -742,6 +742,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lose_sound: {fileID: 8300000, guid: 6695aa2d8c01347d8b318a3fb985a83d, type: 3}
+  cabbage_sound: {fileID: 8300000, guid: 7004c9efb92e96b468e1b3fdaa61d079, type: 3}
+  next_day_sound: {fileID: 8300000, guid: 012c7ae101b88df4d8ce2f71b79c6e00, type: 3}
+  splicing_sound: {fileID: 8300000, guid: 53e339685e7760a46a04e76fe65661cb, type: 3}
+  sell_sound: {fileID: 8300000, guid: 1622a24bab55cf34f90d0615624b08d4, type: 3}
 --- !u!82 &1867717990
 AudioSource:
   m_ObjectHideFlags: 0
