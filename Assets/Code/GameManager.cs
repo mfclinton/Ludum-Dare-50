@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         day += 1;
         bool event_active_before = market_events.is_event_active;
-        market.AdvanceTimestep();
+        market_events.AdvanceMarketState();
         //if(event_active_before == false && market_events.is_event_active)
         //{
         //    // EVENT FIRED
@@ -161,22 +161,43 @@ public class GameManager : MonoBehaviour
         return new_cabbage;
     }
 
+    public void Update_Cash(float cash_change)
+    {
+        if (!sales.ContainsKey(day))
+            sales[day] = new List<float>();
+
+        cash += cash_change;
+        sales[day].Add(cash_change);
+        uim.Update_Cash(cash);
+
+        if(cash <= 0)
+        {
+            // GAME OVER
+        }
+    }
+
+    public bool Buy(float cost)
+    {
+        if(0f < cash + cost)
+        {
+            Update_Cash(cost);
+            return true;
+        }
+
+        return false;
+    }
+
     public void Sell(LandPlot plot)
     {
         Cabbage c = plot.cabbage;
         float price = Get_Price(c);
-        cash += price;
-
-        if (!sales.ContainsKey(day))
-            sales[day] = new List<float>();
-
-        sales[day].Add(price);
+        Update_Cash(price);
 
         plot.ClearPlot();
         Destroy(c.gameObject);
-
-        uim.Update_Cash(cash);
     }
+
+    // TODO : BUY
 
     public float Get_Price(Cabbage c)
     {

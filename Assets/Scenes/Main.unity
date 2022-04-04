@@ -3758,6 +3758,7 @@ GameObject:
   - component: {fileID: 1720974040}
   - component: {fileID: 1720974039}
   - component: {fileID: 1720974038}
+  - component: {fileID: 1720974041}
   m_Layer: 5
   m_Name: Random_Seed
   m_TagString: Untagged
@@ -3829,9 +3830,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690494832}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: Trigger_Random_Seed
+      - m_Target: {fileID: 1720974041}
+        m_TargetAssemblyTypeName: ShopItem, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3879,6 +3880,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720974036}
   m_CullTransparentMesh: 1
+--- !u!114 &1720974041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720974036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab2949d6fc5aa4b9e44182ff8163fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: -10
+  invoked_method:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690494832}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Trigger_Random_Seed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1744785860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,6 +5728,10 @@ PrefabInstance:
     - target: {fileID: 8820567794660033938, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
+      propertyPath: cash
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: mut_r
