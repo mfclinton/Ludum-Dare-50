@@ -19,10 +19,13 @@ public class UpkeepEvents : MonoBehaviour
     [Range(0f, 1f)]
     public float good_event_chance;
 
-    public (float, UpkeepEntry) GetTodaysCashChange()
+    public (float, UpkeepEntry) GetTodaysCashChange(bool ignore_events)
     {
-        UpkeepEntry e = RollEvent();
-        if(e != null)
+        UpkeepEntry e = null;
+        if(!ignore_events)
+            e = RollEvent();
+
+        if (e != null)
         {
             float new_cash_change = e.cash_change + daily_cash_change;
 

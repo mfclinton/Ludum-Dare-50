@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void GetNextUpkeep()
     {
         UpkeepEntry upkeep_entry;
-        (next_upkeep, upkeep_entry) = upkeep_events.GetTodaysCashChange();
+        (next_upkeep, upkeep_entry) = upkeep_events.GetTodaysCashChange(day == 0);
         uim.Update_Upkeep(next_upkeep, upkeep_entry);
     }
 

@@ -76,6 +76,7 @@ public class UIManager : MonoBehaviour
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
     public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text;
+    public TemporaryText cash_event_text;
 
     public void Set_Sale_Triggers()
     {
@@ -238,6 +239,8 @@ public class UIManager : MonoBehaviour
         if(ue != null)
         {
             // CHANGE
+            print("EVENBT");
+            cash_event_text.TriggerFade(ue.cash_change, ue.flavor_text);
         }
     }
 
