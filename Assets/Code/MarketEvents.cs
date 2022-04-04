@@ -17,8 +17,8 @@ public class MarketEvent
 
 public class MarketEvents : MonoBehaviour
 {
-    public const int MEAN_DAYS_TIL_NEXT_EVENT = 15;
-    public const int MEAN_DAYS_PER_EVENT = 6;
+    public const int MEAN_DAYS_TIL_NEXT_EVENT = 9;
+    public const int MEAN_DAYS_PER_EVENT = 8;
     public int time_until_event;
     public int active_event_days_remaining;
     public bool is_event_active;

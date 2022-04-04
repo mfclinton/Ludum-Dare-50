@@ -110,4 +110,93 @@ MonoBehaviour:
     flavour_text: "In the latest episode of Gordon Ramsey\u2019s hit show, ratings
       were astronomical after contestant Valentyna Lugo\u2019s winning petite cabbage
       dish was revealed; sealing her victory in the season finale. "
+  - size_change: 1
+    weight_change: 1
+    nut_p_change: 1
+    color_change: 1
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: An infamous online community has recently been bragging about eating
+      tendies with their cabbage. A sign that your average Joe is shaking up the
+      cabbage market?
+  - size_change: 0
+    weight_change: 0
+    nut_p_change: 6
+    color_change: -2
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: "A 7-time Superbowl winner when asked about what makes him so successful:
+      \u201CNutritious cabbage baby!\u201D"
+  - size_change: -1
+    weight_change: -1
+    nut_p_change: -2
+    color_change: 5
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.9
+    - 0.7
+    - 0.6
+    - 1.1
+    - 0.8
+    - 0.6
+    - 3
+    - 1
+    flavour_text: Christmas is coming! Tis the season to enjoy red cabbage.
+  - size_change: -1
+    weight_change: -1
+    nut_p_change: -2
+    color_change: 5
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 1.75
+    - 0.75
+    - 1.2
+    - 0.8
+    - 0.6
+    - 1.2
+    - 0.7
+    flavour_text: Spooky scary skellingtons are coming! Prepare to make your Halloween
+      cabbages?
+  - size_change: -1
+    weight_change: -1
+    nut_p_change: -2
+    color_change: 5
+    volatility_change: 0
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: Unfinished event
   market: {fileID: 0}
