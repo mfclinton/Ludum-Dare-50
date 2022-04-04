@@ -7,13 +7,13 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public GameObject cabbage_model_prefab;
-    public int day;
+    public int day, max_splices;
     public float cash;
     public List<GeneticVector> seeds;
     public List<int> seed_ids;
 
     public float mut_r, max_size, max_weight;
-    int next_id;
+    int next_id, n_splices_today;
 
     InputManager input_mng;
     UIManager uim;
@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
         seed_ids = new List<int>();
         next_id = 0;
 
+        n_splices_today = 0;
+
+        uim.Update_N_Splices(n_splices_today, max_splices);
         uim.Update_Cash(cash);
         uim.Update_Day(day);
     }
@@ -64,8 +67,12 @@ public class GameManager : MonoBehaviour
             uim.Update_Event("NO NEWS TODAY");
         }
 
+        n_splices_today = 0;
+
+        uim.Update_N_Splices(n_splices_today, max_splices);
         uim.Update_Day(day);
         uim.Update_Cash(cash);
+        uim.Clear_All_Panels();
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
@@ -81,10 +88,12 @@ public class GameManager : MonoBehaviour
 
     public (GeneticVector, int) Splice_Selected()
     {
+        if (max_splices < n_splices_today)
+            return (null, -1);
+
         List<GeneticVector> chromosomes = input_mng.GetSelectedCabbages()
             .Select(cabbage => cabbage.chromosome).ToList();
 
-        print(chromosomes.Count);
         if (chromosomes.Count < 2)
             return (null, -1);
 
@@ -109,6 +118,10 @@ public class GameManager : MonoBehaviour
         }
 
         GeneticVector new_chromosome = chromosomes[0];
+        
+        n_splices_today++;
+        uim.Update_N_Splices(n_splices_today, max_splices);
+
         return AddNewSeed(new_chromosome);
     }
 

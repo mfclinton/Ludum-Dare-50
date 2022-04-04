@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text, day_text, event_text;
+    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text;
 
     public void Set_Sale_Triggers()
     {
@@ -118,7 +118,8 @@ public class UIManager : MonoBehaviour
             icon.sprite = dci.icon;
         }
 
-        if(1 < selected_ui_panels.Count(sup => sup.panel.activeSelf == true))
+        if(1 < selected_ui_panels.Count(sup => sup.panel.activeSelf == true) 
+            && !input_mng.GetSelectedCabbages().Any(cabbage => cabbage.grown_p < 1f))
         {
             splice_button.SetActive(true);
         }
@@ -152,12 +153,18 @@ public class UIManager : MonoBehaviour
     public void Trigger_Splice()
     {
         (GeneticVector gv, int id) = gm.Splice_Selected();
+        if (gv == null)
+            return;
+
         Add_Seed(gv, id);
     }
 
     public void Trigger_Random_Seed()
     {
         (GeneticVector gv, int id) = gm.GenerateRandomSeed();
+        if(gv == null)
+            return;
+
         Add_Seed(gv, id);
     }
 
@@ -201,11 +208,17 @@ public class UIManager : MonoBehaviour
     public void Update_Day(float day)
     {
         day_text.text = "Day: " + day.ToString();
+        Clear_All_Panels();
     }
 
     public void Update_Event(string text)
     {
         event_text.text = text;
+    }
+
+    public void Update_N_Splices(int n_splices_today, int max_splices)
+    {
+        n_splices_text.text = "USED " + n_splices_today.ToString() + "/" + max_splices.ToString();
     }
 
     private void Start()
