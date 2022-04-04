@@ -5712,6 +5712,10 @@ PrefabInstance:
       propertyPath: max_weight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
+      propertyPath: max_splices
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
 --- !u!1 &8953775571634052309

@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public (GeneticVector, int) Splice_Selected()
     {
-        if (max_splices < n_splices_today)
+        if (max_splices <= n_splices_today)
             return (null, -1);
 
         List<GeneticVector> chromosomes = input_mng.GetSelectedCabbages()
