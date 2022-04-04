@@ -27,8 +27,8 @@ public class GeneticVector
         float p = Random.value;
         (float new_size_p, bool size_mut) = FloatCrossOver(size_p, other.size_p, p, mut_r, new Vector2(min_p, 1f));
 
-        // Shares the stratification of weight and size
-        // p = Random.value;
+        // Shares the stratification of weight and size?
+        p = Random.value;
         (float new_weight_p, bool weight_mut) = FloatCrossOver(weight_p, other.weight_p, p, mut_r, new Vector2(min_p, 1f));
 
         p = Random.value;
@@ -38,6 +38,11 @@ public class GeneticVector
         (Color new_color, bool color_mut) = ColorCrossOver(color, other.color, p, mut_r);
 
         return new GeneticVector(new_size_p, new_weight_p, new_nut_p, new_color);
+    }
+
+    public static GeneticVector GenerateRandomGenetics()
+    {
+        return new GeneticVector(Random.value, Random.value, Random.value, new Color(Random.value, Random.value, Random.value));
     }
 
 

@@ -85,6 +85,17 @@ public class GameManager : MonoBehaviour
         }
 
         GeneticVector new_chromosome = chromosomes[0];
+        return AddNewSeed(new_chromosome);
+    }
+
+    public (GeneticVector, int) GenerateRandomSeed()
+    {
+        GeneticVector new_chromosome = GeneticVector.GenerateRandomGenetics();
+        return AddNewSeed(new_chromosome);
+    }
+
+    public (GeneticVector, int) AddNewSeed(GeneticVector new_chromosome)
+    {
         int index = seeds.Count;
         seed_ids.Insert(index, next_id);
         next_id++;

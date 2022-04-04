@@ -152,6 +152,17 @@ public class UIManager : MonoBehaviour
     public void Trigger_Splice()
     {
         (GeneticVector gv, int id) = gm.Splice_Selected();
+        Add_Seed(gv, id);
+    }
+
+    public void Trigger_Random_Seed()
+    {
+        (GeneticVector gv, int id) = gm.GenerateRandomSeed();
+        Add_Seed(gv, id);
+    }
+
+    void Add_Seed(GeneticVector gv, int id)
+    {
         Image seed_img = Instantiate(seed_image_prefab, seed_panel);
         seed_img.color = new Color(gv.color.r, gv.color.g, gv.color.b, 0.5f);
         seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Clamp(gv.size_p, 0.25f, 1f); // Clamp to prevent SO SMOL
