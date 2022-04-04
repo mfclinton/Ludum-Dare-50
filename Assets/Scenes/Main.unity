@@ -6015,7 +6015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: cash
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: mut_r
@@ -6027,7 +6027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: max_weight
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8820567794660033939, guid: 261bd81bdb64b364dbb382f7407a660c, type: 3}
       propertyPath: max_splices
