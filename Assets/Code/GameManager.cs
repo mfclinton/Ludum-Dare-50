@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     Market market;
     MarketEvents market_events;
     UpkeepEvents upkeep_events;
+    EventAudio event_audio;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         market_events = FindObjectOfType<MarketEvents>();
         uim = FindObjectOfType<UIManager>();
         upkeep_events = FindObjectOfType<UpkeepEvents>();
+        event_audio = FindObjectOfType<EventAudio>();
 
         sales = new Dictionary<int, List<float>>();
         seeds = new List<GeneticVector>();
@@ -204,6 +206,8 @@ public class GameManager : MonoBehaviour
         {
             // GAME OVER
             game_over = true;
+            event_audio.PlayLoseSound();
+            uim.Game_Over();
         }
     }
 

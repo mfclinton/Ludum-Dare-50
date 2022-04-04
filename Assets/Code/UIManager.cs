@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
     InputManager input_mng;
     GameManager gm;
     Image selected_seed;
-    public GameObject splice_button;
+    public GameObject splice_button, game_over_panel;
     public Transform seed_panel;
     public Image seed_image_prefab;
 
@@ -149,6 +149,12 @@ public class UIManager : MonoBehaviour
         }
 
         DeSelect_Seed();
+    }
+
+
+    public void Game_Over()
+    {
+        game_over_panel.SetActive(true);
     }
 
 
@@ -251,5 +257,6 @@ public class UIManager : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
 
         Set_Sale_Triggers();
+        game_over_panel.SetActive(false);
     }
 }
