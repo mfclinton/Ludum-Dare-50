@@ -28,7 +28,7 @@ public class GeneticVector
         (float new_size_p, bool size_mut) = FloatCrossOver(size_p, other.size_p, p, mut_r, new Vector2(min_p, 1f));
 
         // Shares the stratification of weight and size?
-        p = Random.value;
+        //p = Random.value;
         (float new_weight_p, bool weight_mut) = FloatCrossOver(weight_p, other.weight_p, p, mut_r, new Vector2(min_p, 1f));
 
         p = Random.value;
