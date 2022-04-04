@@ -73,6 +73,8 @@ public class CoreInput : MonoBehaviour
     void Update()
     {
 
+        // TODO on mouse hover for gene splice too
+
 
         if (Input.GetMouseButtonDown(0)) {
             SelectCabbageCheck(1);
