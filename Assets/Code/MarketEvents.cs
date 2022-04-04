@@ -31,6 +31,7 @@ public class MarketEvents : MonoBehaviour
     {
         market = FindObjectOfType<Market>();
         is_event_active = false;
+        active_event = null;
         active_event_days_remaining = 0;
 
         time_until_event = GenerateDiscretePoisson(MEAN_DAYS_TIL_NEXT_EVENT);
@@ -43,6 +44,9 @@ public class MarketEvents : MonoBehaviour
     }
 
     public void AdvanceMarketState()
+    // Call this function at the end of every day to advance the market and update the state of market events.
+    // A new event can be determined by checking if is_event_active becomes true.
+    // The active event can accessed by looking into the active_event variable.
     {
         if (is_event_active)
         {
@@ -50,8 +54,9 @@ public class MarketEvents : MonoBehaviour
             // if the event is over, revert the state of the market
             if (active_event_days_remaining == 0)
             {
-                is_event_active = false;
                 market.RevertMarketEvent(active_event);
+                is_event_active = false;
+                active_event = null;
             }
         }
         // if there is no even active and its time for the next even to fire, fire a random new event
