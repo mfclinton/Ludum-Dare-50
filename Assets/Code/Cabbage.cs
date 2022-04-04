@@ -17,10 +17,10 @@ public class Cabbage : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        UpdateAppearance();
-    }
+    //private void Update()
+    //{
+    //    UpdateAppearance();
+    //}
 
 
     public void Set(GeneticVector chromosome, float max_size, float max_weight)
@@ -29,7 +29,7 @@ public class Cabbage : MonoBehaviour
         this.max_size = max_size;
         this.max_weight = max_weight;
 
-        this.grown_p = 1f; // TODO : Temp
+        this.grown_p = 0f;
 
         UpdateAppearance();
     }
@@ -39,7 +39,7 @@ public class Cabbage : MonoBehaviour
     {
         Color color = chromosome.color;
         float size = chromosome.size_p * this.max_size * this.grown_p;
-        float weight = chromosome.weight_p * this.max_weight * this.grown_p;
+        float weight = chromosome.weight_p * this.max_weight * Mathf.Clamp(this.grown_p, 0.2f, 1f);
 
         // Update the particle system
         var ps_main = ps.main;

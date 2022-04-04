@@ -5,6 +5,7 @@ using UnityEngine;
 public class LandPlot : MonoBehaviour
 {
     public Cabbage cabbage;
+    public float growth_gain; // Days To Grow = 1/growth_gain
 
     public void SetCabbage(Cabbage cabbage)
     {

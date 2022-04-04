@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour
         uim.Update_Day(day);
     }
 
+    public void NextDay()
+    {
+        day += 1;
+        uim.Update_Day(day);
+        uim.Update_Cash(cash);
+    }
+
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
     static IEnumerable<IEnumerable<T>>
     GetKCombs<T>(IEnumerable<T> list, int length) where T : IComparable
