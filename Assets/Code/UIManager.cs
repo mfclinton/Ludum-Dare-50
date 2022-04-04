@@ -107,12 +107,15 @@ public class UIManager : MonoBehaviour
                 continue;
 
             float value = dict[t_id];
+            if (t_id == GeneticVector.TRAIT_ID.GROWN_P || t_id == GeneticVector.TRAIT_ID.NUT_P)
+                value = value * 100f;
+
             Displayed_Cabbage_Info dci = cih.Get_Cabbage_Info(value);
 
             element.panel.gameObject.SetActive(true);
             
             TextMeshProUGUI text_mesh = element.panel.GetComponentsInChildren<TextMeshProUGUI>().First(x => x.gameObject != element.panel.gameObject);
-            text_mesh.text = value.ToString("0.00") + dci.text;
+            text_mesh.text = value.ToString("0.0") + dci.text;
 
             Image icon = element.panel.GetComponentsInChildren<Image>().First(x => x.gameObject != element.panel.gameObject);
             icon.sprite = dci.icon;

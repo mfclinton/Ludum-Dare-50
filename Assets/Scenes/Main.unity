@@ -293,6 +293,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2019079555}
     m_Modifications:
+    - target: {fileID: 677686940329190150, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 58.844
+      objectReference: {fileID: 0}
+    - target: {fileID: 677686940329190150, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 677686940329190150, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2179031
+      objectReference: {fileID: 0}
     - target: {fileID: 1414790801854352036, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -417,6 +429,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2647624508615250611, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3255376140008185309, guid: be11104e2dde3c54eb97a03895fcdd57, type: 3}
     - target: {fileID: 2984915311787519439, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_fontSize
       value: 36.3
@@ -445,6 +461,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: dd22054191792f7429b1596908001e93, type: 3}
+    - target: {fileID: 4820765320430999574, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 58.844
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820765320430999574, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 27.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4820765320430999574, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2179031
+      objectReference: {fileID: 0}
     - target: {fileID: 7046695521657993776, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_Name
       value: Grown_Panel
@@ -493,6 +521,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: dd22054191792f7429b1596908001e93, type: 3}
+    - target: {fileID: 8016174637678373283, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3255376140008185309, guid: be11104e2dde3c54eb97a03895fcdd57, type: 3}
     - target: {fileID: 8553830903892234029, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5631,13 +5663,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1920830478}
     - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[0].icon
+      value: 
+      objectReference: {fileID: 7154264937179522179, guid: be11104e2dde3c54eb97a03895fcdd57, type: 3}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[0].text
       value: '% Grown'
       objectReference: {fileID: 0}
     - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[1].icon
+      value: 
+      objectReference: {fileID: -3255376140008185309, guid: be11104e2dde3c54eb97a03895fcdd57, type: 3}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[1].text
       value: '% Grown'
       objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[2].icon
+      value: 
+      objectReference: {fileID: -1675090384970017892, guid: be11104e2dde3c54eb97a03895fcdd57, type: 3}
     - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[2].text
       value: '% Grown'
