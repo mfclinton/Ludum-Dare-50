@@ -112,7 +112,7 @@ public class UIManager : MonoBehaviour
             element.panel.gameObject.SetActive(true);
             
             TextMeshProUGUI text_mesh = element.panel.GetComponentsInChildren<TextMeshProUGUI>().First(x => x.gameObject != element.panel.gameObject);
-            text_mesh.text = dci.text;
+            text_mesh.text = value.ToString("0.00") + dci.text;
 
             Image icon = element.panel.GetComponentsInChildren<Image>().First(x => x.gameObject != element.panel.gameObject);
             icon.sprite = dci.icon;

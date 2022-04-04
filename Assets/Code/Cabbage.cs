@@ -75,8 +75,9 @@ public class Cabbage : MonoBehaviour
     public Dictionary<GeneticVector.TRAIT_ID, float> GetObservableGeneticDict()
     {
         Dictionary<GeneticVector.TRAIT_ID, float> dict = chromosome.GetIDToObsValueDict();
-        dict[GeneticVector.TRAIT_ID.SIZE] = (max_size * (float) dict[GeneticVector.TRAIT_ID.SIZE]);
-        dict[GeneticVector.TRAIT_ID.WEIGHT] = (max_weight * (float) dict[GeneticVector.TRAIT_ID.WEIGHT]);
+        // dict[GeneticVector.TRAIT_ID.SIZE] = (max_size * (float) dict[GeneticVector.TRAIT_ID.SIZE]);
+        dict[GeneticVector.TRAIT_ID.WEIGHT] = (max_weight * (float) dict[GeneticVector.TRAIT_ID.WEIGHT] * grown_p);
+        dict[GeneticVector.TRAIT_ID.GROWN_P] = grown_p;
 
         return dict;
     }

@@ -417,6 +417,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2984915311787519439, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984915311787519439, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047679205315920160, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_Name
+      value: Grown_Panel
+      objectReference: {fileID: 0}
     - target: {fileID: 3149671583201509869, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 139.49997
@@ -433,6 +445,50 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: dd22054191792f7429b1596908001e93, type: 3}
+    - target: {fileID: 7046695521657993776, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_Name
+      value: Grown_Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641183049913, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641183049913, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641205687269, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641205687269, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641618433759, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641618433759, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641807582697, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600641807582697, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600642578414909, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_fontSize
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128600642578414909, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7211773981860674172, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1489,7 +1545,7 @@ GameObject:
   - component: {fileID: 356748324}
   - component: {fileID: 356748323}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ITEM_TEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1695,10 +1751,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 72
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 5
@@ -5519,6 +5575,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4498164693505262840, guid: 76a57ba90328be44e9625421757afb7d, type: 3}
     - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: displayed_traits.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: selected_ui_panels.Array.data[0].panel
       value: 
       objectReference: {fileID: 1511288950}
@@ -5534,6 +5598,14 @@ PrefabInstance:
       propertyPath: selected_ui_panels.Array.data[1].sale_button
       value: 
       objectReference: {fileID: 1223219845}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: selected_ui_panels.Array.data[0].entries.Array.data[0].id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: selected_ui_panels.Array.data[1].entries.Array.data[0].id
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: selected_ui_panels.Array.data[0].entries.Array.data[0].panel
       value: 
@@ -5558,6 +5630,38 @@ PrefabInstance:
       propertyPath: selected_ui_panels.Array.data[1].entries.Array.data[2].panel
       value: 
       objectReference: {fileID: 1920830478}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[0].text
+      value: '% Grown'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[1].text
+      value: '% Grown'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[0].cabbage_info.Array.data[2].text
+      value: '% Grown'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[1].cabbage_info.Array.data[0].text
+      value: ' lbs'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[1].cabbage_info.Array.data[1].text
+      value: ' lbs'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[2].cabbage_info.Array.data[0].text
+      value: '% Vitamin K'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[2].cabbage_info.Array.data[1].text
+      value: '% Vitamin K'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059065466695254728, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
+      propertyPath: cabbage_info_entries.Array.data[2].cabbage_info.Array.data[2].text
+      value: '% Vitamin K'
+      objectReference: {fileID: 0}
     - target: {fileID: 8059065466695254729, guid: bdbd595582923c0469a6670c0671c1d0, type: 3}
       propertyPath: m_RootOrder
       value: 0

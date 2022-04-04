@@ -6,7 +6,7 @@ using UnityEngine;
 public class GeneticVector
 {
     // Traits
-    public enum TRAIT_ID { SIZE, WEIGHT, NUT_P, COLOR };
+    public enum TRAIT_ID { SIZE, WEIGHT, NUT_P, COLOR, GROWN_P };
     public float size_p, weight_p, nut_p;
     public Color color;
 
