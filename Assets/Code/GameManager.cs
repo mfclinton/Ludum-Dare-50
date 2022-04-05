@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public List<GeneticVector> seeds;
     public List<int> seed_ids;
 
+    public List<LandPlot> shop_regular_plots;
+    public List<LandPlot> shop_gold_plots;
+
     public float mut_r, max_size, max_weight, next_upkeep;
     int next_id, n_splices_today;
 
