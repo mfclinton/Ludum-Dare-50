@@ -5,10 +5,8 @@ using UnityEngine;
 public class BuyoutForecaster : MonoBehaviour
 {
     public int BUYOUT_EXTRAPOLATION_DAYS = 10;
-    public int BUYOUT_DAYS_TO_ESTABLISH_SELF = 25;
-    public int BUYOUT_LAST_DAYS_FOR_AVG = 15;
-    public float BUYOUT_DEFAULT_PRICE = 100f;
-    public int BUYOUT_DEFAULT_FIRST_DAYS = 5;
+    public int BUYOUT_LAST_DAYS_FOR_AVG = 10;
+    public float BUYOUT_DEFAULT_PRICE = 10f;
 
     public float GetBuyoutAmount(Dictionary<int, List<float>> data)
     {
@@ -25,7 +23,7 @@ public class BuyoutForecaster : MonoBehaviour
         }
 
         // If there are less than BUYOUT_DEFAULT_FIRST_DAYS days of data, return BUYOUT_DEFAULT_PRICE
-        if (daily_income.Count < BUYOUT_DEFAULT_FIRST_DAYS)
+        if (daily_income.Count < BUYOUT_LAST_DAYS_FOR_AVG)
         {
             return BUYOUT_DEFAULT_PRICE;
         }
@@ -46,7 +44,7 @@ public class BuyoutForecaster : MonoBehaviour
         average_income /= daily_income_last.Count;
 
         //Buyout formula: average sales over last 10 days * Clamp01(curr day / BUYOUT_DAYS_TO_ESTABLISH_SELF) * BUYOUT_EXTRAPOLATION_DAYS
-        float buyout_price = average_income * Mathf.Clamp01(daily_income.Count / BUYOUT_DAYS_TO_ESTABLISH_SELF) * BUYOUT_EXTRAPOLATION_DAYS;
+        float buyout_price = average_income * BUYOUT_EXTRAPOLATION_DAYS;
         return buyout_price;
     }
 }
