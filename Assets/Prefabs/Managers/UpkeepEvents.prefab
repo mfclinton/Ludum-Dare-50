@@ -45,9 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daily_cash_change: -20
   upkeep_events:
-  - cash_change: -20
+  - cash_change: -5
     flavor_text: Mice steal your money!
-  - cash_change: 20
+  - cash_change: 10
     flavor_text: Mice deliver you someone's stolen money!
+  - cash_change: -10
+    flavor_text: 'New legislation has passed, supported by big cabbage lobbyists,
+      which raises the tax on farmers with less than 30 employees. '
+  - cash_change: -10
+    flavor_text: 'New legislation has passed, supported by big cabbage lobbyists,
+      which raises the tax on farmers with less than 30 employees. '
+  - cash_change: -5
+    flavor_text: Right to repair fails again. Cabbage farmers are left paying exorbitant
+      amounts to repair their tools.
+  - cash_change: 5
+    flavor_text: Your beloved grandma passes. She left you with her inheritance.
+  - cash_change: 5
+    flavor_text: 
   daily_event_chance: 1
   good_event_chance: 0

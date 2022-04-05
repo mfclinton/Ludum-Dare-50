@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class HighScoreEntry
+{
+    public string name;
+    public float score;
+}
+
 public class HighScoreTracker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    List<HighScoreEntry> scores = new List<HighScoreEntry>();
+
+    void AddNewScore(string entryName, float entryScore)
     {
-        
+        scores.Add(new HighScoreEntry { name = entryName, score = entryScore });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
