@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     UpkeepEvents upkeep_events;
     EventAudio event_audio;
     BuyoutForecaster bf;
+    HighScoreTracker hst;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         upkeep_events = FindObjectOfType<UpkeepEvents>();
         event_audio = FindObjectOfType<EventAudio>();
         bf = FindObjectOfType<BuyoutForecaster>();
+        hst = FindObjectOfType<HighScoreTracker>();
 
         sales = new Dictionary<int, List<float>>();
         seeds = new List<GeneticVector>();
@@ -54,6 +56,43 @@ public class GameManager : MonoBehaviour
         uim.Update_Sellout_Text(bf.GetBuyoutAmount(sales));
         uim.Update_Cash(cash);
         uim.Update_Day(day);
+        Disable_Shop_Stuff();
+    }
+
+    public void Disable_Shop_Stuff()
+    {
+        foreach (LandPlot lp in shop_regular_plots)
+            lp.gameObject.SetActive(false);
+
+        foreach (LandPlot lp in shop_gold_plots)
+            lp.gameObject.SetActive(false);
+    }
+
+    public void Buy_Gold_Plot()
+    {
+        Buy_Plot(false);
+    }
+
+    public void Buy_Regular_Plot()
+    {
+        Buy_Plot(true);
+    }
+
+    public void Buy_Plot(bool regular_plot)
+    {
+        List<LandPlot> plots;
+        if (regular_plot)
+            plots = shop_regular_plots;
+        else
+            plots = shop_gold_plots;
+
+        LandPlot lp = plots[0];
+        plots.RemoveAt(0);
+
+        if (plots.Count == 0)
+            uim.Disable_Plot_Sale(regular_plot);
+
+        lp.gameObject.SetActive(true);
     }
 
     public void GetNextUpkeep()
@@ -106,8 +145,6 @@ public class GameManager : MonoBehaviour
         uim.Update_Day(day);
         uim.Update_Cash(cash);
         uim.Clear_All_Panels();
-
-        event_audio.PlayNextDaySound();
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
@@ -218,6 +255,8 @@ public class GameManager : MonoBehaviour
             game_over = true;
             event_audio.PlayLoseSound();
             uim.Game_Over();
+            hst.UpdateHighScore(cash);
+            uim.Update_HighScore_Text(hst.GetHighScore());
         }
     }
 
@@ -267,5 +306,7 @@ public class GameManager : MonoBehaviour
         uim.Update_Cash(cash);
         uim.Game_Over();
         event_audio.PlaySelloutSound();
+        hst.UpdateHighScore(cash);
+        uim.Update_HighScore_Text(hst.GetHighScore());
     }
 }

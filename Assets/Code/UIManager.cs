@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
     InputManager input_mng;
     GameManager gm;
     Image selected_seed;
-    public GameObject splice_button, game_over_panel;
+    public GameObject splice_button, game_over_panel, buy_reg_plot_button, buy_gold_plot_button;
     public Transform seed_panel;
     public Image seed_image_prefab;
 
@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text, sellout_text;
+    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text, sellout_text, highscore_text;
     public TemporaryText cash_event_text;
 
     public void Set_Sale_Triggers()
@@ -85,6 +85,18 @@ public class UIManager : MonoBehaviour
             int temp = i;
             selected_ui_panels[i].sale_button
                 .onClick.AddListener(() => input_mng.Sell(temp));
+        }
+    }
+
+    public void Disable_Plot_Sale(bool regular_plot)
+    {
+        if (regular_plot)
+        {
+            buy_reg_plot_button.SetActive(false);
+        }
+        else
+        {
+            buy_gold_plot_button.SetActive(false);
         }
     }
 
@@ -220,6 +232,15 @@ public class UIManager : MonoBehaviour
             before_str = "-" + before_str;
 
         cash_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
+    }
+
+    public void Update_HighScore_Text(float cash)
+    {
+        string before_str = "HIGH SCORE: $";
+        if (cash < 0)
+            before_str = "-" + before_str;
+
+        highscore_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
     }
 
     public void Update_Day(float day)

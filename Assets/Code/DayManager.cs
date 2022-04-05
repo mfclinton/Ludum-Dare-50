@@ -13,6 +13,7 @@ public class DayManager : MonoBehaviour
     bool sun_setting = false;
     bool growing = false;
     bool sun_rising = false;
+    EventAudio event_audio;
 
     Color day;
     List<Cabbage> cabbages;
@@ -25,7 +26,10 @@ public class DayManager : MonoBehaviour
             return;
 
         if(!sun_setting && !growing && !sun_rising)
+        {
             sun_setting = true;
+            event_audio.PlayNextDaySound();
+        }
     }
 
     void HandleNight()
@@ -64,6 +68,7 @@ public class DayManager : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        event_audio = FindObjectOfType<EventAudio>();
         day = sun.color;
     }
 
