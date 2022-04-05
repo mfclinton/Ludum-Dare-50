@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
         uim.Update_Day(day);
         uim.Update_Cash(cash);
         uim.Clear_All_Panels();
+
+        event_audio.PlayNextDaySound();
     }
 
     // https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
@@ -156,6 +158,7 @@ public class GameManager : MonoBehaviour
             ClearPlot(c.plot);
 
         uim.Clear_All_Panels();
+        event_audio.PlaySplicingSound();
 
         return AddNewSeed(new_chromosome);
     }
@@ -193,6 +196,7 @@ public class GameManager : MonoBehaviour
         GameObject new_cabbage_model = Instantiate(cabbage_model_prefab);
         Cabbage new_cabbage = new_cabbage_model.AddComponent<Cabbage>();
         new_cabbage.Set(new_chromosome, max_size, max_weight);
+        event_audio.PlayCabbagePlaceSound();
         return new_cabbage;
     }
 
@@ -232,6 +236,7 @@ public class GameManager : MonoBehaviour
         Update_Cash(price);
 
         ClearPlot(plot);
+        event_audio.PlaySellSound();
     }
 
     public void ClearPlot(LandPlot plot)
