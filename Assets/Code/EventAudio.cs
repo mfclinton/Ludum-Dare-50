@@ -9,6 +9,7 @@ public class EventAudio : MonoBehaviour
     public AudioClip next_day_sound;
     public AudioClip splicing_sound;
     public AudioClip sell_sound;
+    public AudioClip sellout_sound;
     public void PlayLoseSound()
     {
         GetComponent<AudioSource>().clip = lose_sound;
@@ -36,6 +37,12 @@ public class EventAudio : MonoBehaviour
     public void PlaySellSound()
     {
         GetComponent<AudioSource>().clip = sell_sound;
+        GetComponent<AudioSource>().Play();
+    }
+
+    public void PlaySelloutSound()
+    {
+        GetComponent<AudioSource>().clip = sellout_sound;
         GetComponent<AudioSource>().Play();
     }
 

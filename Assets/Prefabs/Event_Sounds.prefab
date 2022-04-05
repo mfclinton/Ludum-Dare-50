@@ -145,3 +145,4 @@ MonoBehaviour:
   next_day_sound: {fileID: 8300000, guid: 012c7ae101b88df4d8ce2f71b79c6e00, type: 3}
   splicing_sound: {fileID: 8300000, guid: 53e339685e7760a46a04e76fe65661cb, type: 3}
   sell_sound: {fileID: 8300000, guid: 1622a24bab55cf34f90d0615624b08d4, type: 3}
+  sellout_sound: {fileID: 8300000, guid: 23c4a09e8c95e794e9832eb330a31ff4, type: 3}
