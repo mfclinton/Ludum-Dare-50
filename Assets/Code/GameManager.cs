@@ -266,5 +266,6 @@ public class GameManager : MonoBehaviour
         cash += bf.GetBuyoutAmount(sales);
         uim.Update_Cash(cash);
         uim.Game_Over();
+        event_audio.PlaySelloutSound();
     }
 }
