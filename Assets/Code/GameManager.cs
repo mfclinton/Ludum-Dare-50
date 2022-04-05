@@ -78,6 +78,17 @@ public class GameManager : MonoBehaviour
         Buy_Plot(true);
     }
 
+    public void Buy_One_Splice()
+    {
+        max_splices++;
+        uim.Update_N_Splices(n_splices_today, max_splices);
+    }
+
+    public void Buy_Increase_Max_Weight()
+    {
+        max_weight *= 1.5f;
+    }
+
     public void Buy_Plot(bool regular_plot)
     {
         List<LandPlot> plots;
@@ -194,10 +205,11 @@ public class GameManager : MonoBehaviour
         n_splices_today++;
         uim.Update_N_Splices(n_splices_today, max_splices);
 
-        foreach (Cabbage c in cabbages)
-            ClearPlot(c.plot);
+        //REMOVES THE CABBAGES AFTER BREEDING
+        //foreach (Cabbage c in cabbages)
+        //    ClearPlot(c.plot);
+        // uim.Clear_All_Panels();
 
-        uim.Clear_All_Panels();
         event_audio.PlaySplicingSound();
 
         return AddNewSeed(new_chromosome);

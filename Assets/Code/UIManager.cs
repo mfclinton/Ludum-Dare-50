@@ -262,7 +262,7 @@ public class UIManager : MonoBehaviour
 
     public void Update_N_Splices(int n_splices_today, int max_splices)
     {
-        n_splices_text.text = "USED " + n_splices_today.ToString() + "/" + max_splices.ToString();
+        n_splices_text.text = "SPLICES " + n_splices_today.ToString() + "/" + max_splices.ToString();
     }
 
     public void Update_Upkeep(float days_cash_change, UpkeepEntry ue)
