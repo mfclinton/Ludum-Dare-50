@@ -26,4 +26,9 @@ public class HighScoreTracker : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    public float GetHighScore()
+    {
+        return last_high_score;
+    }
 }
