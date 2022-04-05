@@ -10,13 +10,20 @@ public class HighScoreEntry
 
 public class HighScoreTracker : MonoBehaviour
 {
-    
-    List<HighScoreEntry> scores = new List<HighScoreEntry>();
+    float last_high_score = 0f;
 
-    void AddNewScore(string entryName, float entryScore)
+    void Start()
     {
-        scores.Add(new HighScoreEntry { name = entryName, score = entryScore });
+        last_high_score = PlayerPrefs.GetFloat("high_score", 0f);
     }
 
-    
+    public void UpdateHighScore(float score)
+    {
+        if (score > last_high_score)
+        {
+            last_high_score = score;
+            PlayerPrefs.SetFloat("high_score", score);
+            PlayerPrefs.Save();
+        }
+    }
 }
