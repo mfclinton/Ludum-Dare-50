@@ -19,15 +19,17 @@ public class DayManager : MonoBehaviour
     List<Cabbage> cabbages;
     List<float> end_grown_p;
     GameManager gm;
+    int day_clicked;
 
     public void TriggerNight()
     {
         if (gm.game_over)
             return;
 
-        if(!sun_setting && !growing && !sun_rising)
+        if(!sun_setting && !growing && !sun_rising && gm.day != day_clicked)
         {
             sun_setting = true;
+            day_clicked = gm.day;
             event_audio.PlayNextDaySound();
         }
     }
@@ -70,6 +72,7 @@ public class DayManager : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         event_audio = FindObjectOfType<EventAudio>();
         day = sun.color;
+        day_clicked = -1;
     }
 
     void Update()

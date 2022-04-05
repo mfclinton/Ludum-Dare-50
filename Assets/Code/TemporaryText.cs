@@ -19,10 +19,10 @@ public class TemporaryText : MonoBehaviour
 
     public void TriggerFade(float cash_modifier, string msg)
     {
-        string before_str = "\n$";
+        string before_str = "$";
         if (cash_modifier < 0)
             before_str = "-" + before_str;
-        string cash_str = before_str + Mathf.Abs(cash_modifier).ToString("0.00");
+        string cash_str = "\n" + before_str + Mathf.Abs(cash_modifier).ToString("0.00");
 
         text.text = msg + cash_str;
         total_time_elapsed = 0f;
