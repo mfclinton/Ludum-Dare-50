@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     public Cabbage_Info_Helper[] cabbage_info_entries;
     public GeneticVector.TRAIT_ID[] displayed_traits;
 
-    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text;
+    public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text, sellout_text;
     public TemporaryText cash_event_text;
 
     public void Set_Sale_Triggers()
@@ -155,6 +155,8 @@ public class UIManager : MonoBehaviour
     public void Game_Over()
     {
         game_over_panel.SetActive(true);
+        Clear_All_Panels();
+        Update_Sellout_Text(0f);
     }
 
 
@@ -217,7 +219,7 @@ public class UIManager : MonoBehaviour
         if (cash < 0)
             before_str = "-" + before_str;
 
-        cash_text.text = before_str + Mathf.Abs(cash).ToString("0.0");
+        cash_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
     }
 
     public void Update_Day(float day)
@@ -231,6 +233,12 @@ public class UIManager : MonoBehaviour
         event_text.text = text;
     }
 
+    public void Update_Sellout_Text(float sellout_value)
+    {
+        string before_str = "SELLOUT FOR $";
+        sellout_text.text = before_str + sellout_value.ToString("0.00");
+    }
+
     public void Update_N_Splices(int n_splices_today, int max_splices)
     {
         n_splices_text.text = "USED " + n_splices_today.ToString() + "/" + max_splices.ToString();
@@ -241,12 +249,10 @@ public class UIManager : MonoBehaviour
         string before_str = "$";
         if (days_cash_change < 0)
             before_str = "-" + before_str;
-        upkeep_text.text = before_str + Mathf.Abs(days_cash_change).ToString("0.0");
+        upkeep_text.text = before_str + Mathf.Abs(days_cash_change).ToString("0.00");
 
         if(ue != null)
         {
-            // CHANGE
-            print("EVENBT");
             cash_event_text.TriggerFade(ue.cash_change, ue.flavor_text);
         }
     }

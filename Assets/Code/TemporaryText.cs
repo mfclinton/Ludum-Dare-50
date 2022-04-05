@@ -22,7 +22,7 @@ public class TemporaryText : MonoBehaviour
         string before_str = "\n$";
         if (cash_modifier < 0)
             before_str = "-" + before_str;
-        string cash_str = before_str + Mathf.Abs(cash_modifier).ToString("0.0");
+        string cash_str = before_str + Mathf.Abs(cash_modifier).ToString("0.00");
 
         text.text = msg + cash_str;
         total_time_elapsed = 0f;

@@ -21,7 +21,7 @@ public class ShopItem : MonoBehaviour
         if (cost < 0f)
             pre_text = "-";
 
-        cost_text.text = pre_text + "$" + Mathf.Abs(cost).ToString("0.0");
+        cost_text.text = pre_text + "$" + Mathf.Abs(cost).ToString("0.00");
     }
 
     public void Buy()

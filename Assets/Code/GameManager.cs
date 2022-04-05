@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     MarketEvents market_events;
     UpkeepEvents upkeep_events;
     EventAudio event_audio;
+    BuyoutForecaster bf;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         uim = FindObjectOfType<UIManager>();
         upkeep_events = FindObjectOfType<UpkeepEvents>();
         event_audio = FindObjectOfType<EventAudio>();
+        bf = FindObjectOfType<BuyoutForecaster>();
 
         sales = new Dictionary<int, List<float>>();
         seeds = new List<GeneticVector>();
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
         n_splices_today = 0;
 
         uim.Update_N_Splices(n_splices_today, max_splices);
+        uim.Update_Sellout_Text(bf.GetBuyoutAmount(sales));
         uim.Update_Cash(cash);
         uim.Update_Day(day);
     }
@@ -96,7 +99,7 @@ public class GameManager : MonoBehaviour
 
         n_splices_today = 0;
         uim.Update_N_Splices(n_splices_today, max_splices);
-
+        uim.Update_Sellout_Text(bf.GetBuyoutAmount(sales));
         uim.Update_Day(day);
         uim.Update_Cash(cash);
         uim.Clear_All_Panels();
@@ -244,5 +247,16 @@ public class GameManager : MonoBehaviour
     {
         float price = market.DetermineCabbageValue(c);
         return price;
+    }
+
+    public void Sellout()
+    {
+        if (game_over)
+            return;
+
+        game_over = true;
+        cash += bf.GetBuyoutAmount(sales);
+        uim.Update_Cash(cash);
+        uim.Game_Over();
     }
 }
