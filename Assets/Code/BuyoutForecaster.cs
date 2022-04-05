@@ -44,7 +44,7 @@ public class BuyoutForecaster : MonoBehaviour
         average_income /= daily_income_last.Count;
 
         //Buyout formula: average sales over last 10 days * Clamp01(curr day / BUYOUT_DAYS_TO_ESTABLISH_SELF) * BUYOUT_EXTRAPOLATION_DAYS
-        float buyout_price = average_income * BUYOUT_EXTRAPOLATION_DAYS;
+        float buyout_price = Mathf.Max(10f, average_income * BUYOUT_EXTRAPOLATION_DAYS);
         return buyout_price;
     }
 }
