@@ -418,10 +418,10 @@ MonoBehaviour:
     flavour_text: Scientists find breakthrough in global constipation crisis CONSTIPATE-19.
       Fiber found in cabbages leads to a 68% decrease in mortality,sending demand
       skyrocketing.
-  - size_change: 3
-    weight_change: 3
-    nut_p_change: 3
-    color_change: 3
+  - size_change: -4
+    weight_change: -5
+    nut_p_change: -5
+    color_change: -4
     volatility_change: 0.1
     color_multipliers:
     - 0.5
