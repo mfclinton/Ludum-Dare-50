@@ -22,6 +22,9 @@ public class TemporaryText : MonoBehaviour
         string before_str = "$";
         if (cash_modifier < 0)
             before_str = "-" + before_str;
+        else
+            before_str = "+" + before_str;
+        before_str = "Upkeep " + before_str;
         string cash_str = "\n" + before_str + Mathf.Abs(cash_modifier).ToString("0.00");
 
         text.text = msg + cash_str;

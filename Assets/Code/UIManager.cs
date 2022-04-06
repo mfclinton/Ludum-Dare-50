@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI cash_text, day_text, event_text, n_splices_text, upkeep_text, sellout_text, highscore_text;
     public TemporaryText cash_event_text;
+    public Vector2 seed_display_constraints;
 
     public void Set_Sale_Triggers()
     {
@@ -197,7 +198,7 @@ public class UIManager : MonoBehaviour
     {
         Image seed_img = Instantiate(seed_image_prefab, seed_panel);
         seed_img.color = new Color(gv.color.r, gv.color.g, gv.color.b, 0.5f);
-        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Clamp(gv.size_p, 0.25f, 1f); // Clamp to prevent SO SMOL
+        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Clamp(gv.size_p, seed_display_constraints[0], seed_display_constraints[1]); // Clamp to prevent SO SMOL
 
         Button button = seed_img.GetComponent<Button>();
         button.onClick.AddListener(() => input_mng.Set_Selected_Seed(id, seed_img));
@@ -230,6 +231,7 @@ public class UIManager : MonoBehaviour
         string before_str = "$";
         if (cash < 0)
             before_str = "-" + before_str;
+        before_str = "Cash: " + before_str;
 
         cash_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
     }
@@ -256,7 +258,7 @@ public class UIManager : MonoBehaviour
 
     public void Update_Sellout_Text(float sellout_value)
     {
-        string before_str = "SELLOUT FOR $";
+        string before_str = "SELLOUT TO BIG CABBAGE\n$";
         sellout_text.text = before_str + sellout_value.ToString("0.00");
     }
 
@@ -270,6 +272,7 @@ public class UIManager : MonoBehaviour
         string before_str = "$";
         if (days_cash_change < 0)
             before_str = "-" + before_str;
+        before_str = "Upkeep: " + before_str;
         upkeep_text.text = before_str + Mathf.Abs(days_cash_change).ToString("0.00");
 
         if(ue != null)

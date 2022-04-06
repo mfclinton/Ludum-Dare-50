@@ -79,7 +79,7 @@ public class InputManager : MonoBehaviour
         }
 
         // Create Mask
-        int layer_mask = LayerMask.GetMask("Plot");
+        int layer_mask = LayerMask.GetMask("Plot", "Cabbage");
         print(layer_mask);
 
         RaycastHit hit;
@@ -94,6 +94,10 @@ public class InputManager : MonoBehaviour
             LandPlot lp = object_hit.GetComponent<LandPlot>();
             if (lp != null)
                 return lp;
+
+            Cabbage cabbage = object_hit.GetComponent<Cabbage>();
+            if (cabbage != null)
+                return cabbage.plot;
         }
         else
         {

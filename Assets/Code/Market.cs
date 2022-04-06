@@ -57,12 +57,12 @@ public class Market : MonoBehaviour
     {
         GeneticVector genetic_vector = cabbage.chromosome;
 
-        float size = genetic_vector.size_p * cabbage.max_size;
-        float weight = genetic_vector.weight_p * cabbage.max_weight;
-        float nut_p = genetic_vector.nut_p;
+        float size = cabbage.Get_Actual_Size();
+        float weight = cabbage.Get_Actual_Weight();
+        float nut_p = cabbage.Get_Actual_Nutrients();
         Color color = genetic_vector.color;
 
-        float price = CabbagePrice(size, weight, nut_p, color, cabbage.grown_p);
+        float price = CabbagePrice(size, weight, nut_p, color);
         return 0f <= price ? price : 0f;
     }
 
@@ -107,14 +107,14 @@ public class Market : MonoBehaviour
 
     }
 
-    private float CabbagePrice(float size, float weight, float nut_p, Color color, float growth_p)
+    private float CabbagePrice(float size, float weight, float nut_p, Color color)
     {
         float size_component = size * size_prices[size_prices.Count - 1];
         float weight_component = weight * weight_prices[weight_prices.Count - 1];
         float nut_p_component = nut_p * nut_p_prices[nut_p_prices.Count - 1];
         float color_component = CabbageMultiplier(color) * color_prices[color_prices.Count - 1];
 
-        return (size_component + weight_component + nut_p_component + color_component) * growth_p;
+        return (size_component + weight_component + nut_p_component + color_component);
     }
 
     private void WarmupPrices()
@@ -206,7 +206,7 @@ public class Market : MonoBehaviour
 
     private float GenerateLogNormal(float mu, float sigma)
     {
-        float U1 = Random.value;
+        float U1 = Mathf.Clamp(Random.value, 0.0001f, 1f);
         float U2 = Random.value;
         float Z1 = Mathf.Sqrt(-2f * Mathf.Log(U1)) * Mathf.Cos(2f * Mathf.PI * U2);
         float scaled_normal = (sigma * Z1) + mu;

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cabbage: {fileID: 0}
+  growth_gain: 0
 --- !u!65 &1754663401042055134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,5 +111,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019349674, y: 0.020171143, z: 0.00350492}
+  m_Size: {x: 0.019349674, y: 0.020171143, z: 0.01}
   m_Center: {x: 0, y: -0.00070263614, z: 0.0004002189}

@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public List<LandPlot> shop_regular_plots;
     public List<LandPlot> shop_gold_plots;
 
-    public float mut_r, max_size, max_weight, next_upkeep;
+    public float mut_r, next_upkeep;
+    public Vector2 size_constraints, weight_constraints, nutrition_constraints;
     int next_id, n_splices_today;
 
     public bool game_over;
@@ -86,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void Buy_Increase_Max_Weight()
     {
-        max_weight *= 1.5f;
+        weight_constraints[1] = weight_constraints[1] * 1.20f;
     }
 
     public void Buy_Plot(bool regular_plot)
@@ -247,7 +248,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject new_cabbage_model = Instantiate(cabbage_model_prefab);
         Cabbage new_cabbage = new_cabbage_model.AddComponent<Cabbage>();
-        new_cabbage.Set(new_chromosome, max_size, max_weight);
+        new_cabbage.Set(new_chromosome, size_constraints, weight_constraints);
         event_audio.PlayCabbagePlaceSound();
         return new_cabbage;
     }

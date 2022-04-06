@@ -82,16 +82,4 @@ public class GeneticVector
 
         return (new_color, mutated);
     }
-
-
-    public Dictionary<TRAIT_ID, float> GetIDToObsValueDict()
-    {
-        Dictionary<TRAIT_ID, float> dict = new Dictionary<TRAIT_ID, float>();
-
-        dict[TRAIT_ID.SIZE] = size_p;
-        dict[TRAIT_ID.WEIGHT] = weight_p;
-        dict[TRAIT_ID.NUT_P] = nut_p;
-
-        return dict;
-    }
 }
