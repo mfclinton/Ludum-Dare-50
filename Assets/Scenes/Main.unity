@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e130b06b30b648b9858eff8208695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade_time_length: 12
+  fade_time_length: 25
 --- !u!114 &132635254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5881,10 +5881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BUYOUT_EXTRAPOLATION_DAYS: 10
-  BUYOUT_DAYS_TO_ESTABLISH_SELF: 25
   BUYOUT_LAST_DAYS_FOR_AVG: 15
   BUYOUT_DEFAULT_PRICE: 100
-  BUYOUT_DEFAULT_FIRST_DAYS: 5
 --- !u!114 &1281499244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3062642492621238371, guid: 101930a58bef11843bdf8eeb04fd2e4b, type: 3}
@@ -7530,7 +7528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 391.26855, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655762104
@@ -10238,7 +10236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7663101185246215118, guid: 30cbc4d4c8e3f014ca449c9fed8d0e9b, type: 3}
       propertyPath: good_event_chance
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7663101185246215118, guid: 30cbc4d4c8e3f014ca449c9fed8d0e9b, type: 3}
       propertyPath: daily_event_chance

@@ -23,7 +23,7 @@ public class Market : MonoBehaviour
     public const float LOG_NORMAL_SIGMA = 0.75f;
 
     private const int ALGO_WARMUP_TIMESTEPS = 50;
-    private float EMA_ALPHA = 0.05f;
+    private float EMA_ALPHA = 0.08f;
 
     // Pricing arrays
     public List<float> size_prices;

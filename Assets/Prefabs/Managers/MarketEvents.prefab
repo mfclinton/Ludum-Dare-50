@@ -155,14 +155,14 @@ MonoBehaviour:
     color_multipliers:
     - 0.5
     - 0.5
-    - 0.9
-    - 0.7
+    - 2
+    - 1.5
     - 0.6
     - 1.1
     - 0.8
     - 0.6
     - 3
-    - 1
+    - 2.5
     flavour_text: The holidays are coming! Tis the season to enjoy red cabbage.
   - size_change: -1
     weight_change: -1
@@ -344,4 +344,96 @@ MonoBehaviour:
     - 0.7
     flavour_text: Moncabgo Crankee Stadium was named after the largest cabbage producer
       in the world following a reported $121 billion deal.
+  - size_change: 5
+    weight_change: 5
+    nut_p_change: 5
+    color_change: 5
+    volatility_change: 0.1
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: "Muckerbergh throws opening pitch at World Series. He wore his
+      favorite shirt with text saying \u201CWe\u2019re smoking cabbages\u201D."
+  - size_change: 3
+    weight_change: 3
+    nut_p_change: 3
+    color_change: 3
+    volatility_change: 0.3
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: In latest filings, hedge fund who made their name for shorting
+      cabbage during the Great Cabbage Famine has opened new positions including
+      $84 billion worth of cabbage calls. Cabbage on the rise?
+  - size_change: -5
+    weight_change: -5
+    nut_p_change: -5
+    color_change: -5
+    volatility_change: 0.2
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: LATEST CABBAGE-BASED PIKPOK CHALLENGE LEAVES TEN DEAD. Lawmakers
+      are rushing legislation to ban minors from buying cabbages.
+  - size_change: 10
+    weight_change: 10
+    nut_p_change: 10
+    color_change: 10
+    volatility_change: 0.3
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: Scientists find breakthrough in global constipation crisis CONSTIPATE-19.
+      Fiber found in cabbages leads to a 68% decrease in mortality,sending demand
+      skyrocketing.
+  - size_change: 3
+    weight_change: 3
+    nut_p_change: 3
+    color_change: 3
+    volatility_change: 0.1
+    color_multipliers:
+    - 0.5
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.75
+    - 1.5
+    - 0.8
+    - 0.6
+    - 1.5
+    - 0.7
+    flavour_text: Fast food lobby continues crusade against cabbage. Cabbage prices
+      sent tumbling.
   market: {fileID: 0}

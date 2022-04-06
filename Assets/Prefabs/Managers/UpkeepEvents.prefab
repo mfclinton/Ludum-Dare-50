@@ -60,7 +60,18 @@ MonoBehaviour:
       amounts to repair their tools.
   - cash_change: 5
     flavor_text: Your beloved grandma passes. She left you with her inheritance.
-  - cash_change: 5
-    flavor_text: 
+  - cash_change: -5
+    flavor_text: "The cabbage owner\u2019s association raises its dues. You wonder
+      why you continue to pay after they banned your basketball hoop."
+  - cash_change: 1
+    flavor_text: The president announces $1 STIMULUS CHECKS TO ALL CITIZENS to help
+      average citizens after the tech bubble crash and subsequent $589 trillion bailout.
+  - cash_change: -20
+    flavor_text: "\u201C[Big] Corporations are people too\u201D, the president proclaims
+      in his State of the Union Address."
+  - cash_change: -10
+    flavor_text: You buy a cat to thwart the cash stealing mice.
+  - cash_change: -10
+    flavor_text: Big Giuseppe Gabagool collects his dues.
   daily_event_chance: 1
   good_event_chance: 0
