@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade_time_length: 3
-  fade_time_start: 12
+  fade_time_start: 15
 --- !u!114 &132635254
 MonoBehaviour:
   m_ObjectHideFlags: 0
