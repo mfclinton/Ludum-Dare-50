@@ -22,20 +22,20 @@ public class GeneticVector
 
 
     // Cross Over Functions 
-    public GeneticVector CrossOver(GeneticVector other, float mut_r)
+    public GeneticVector CrossOver(GeneticVector other, float mut_r, float genetic_var_p)
     {
         float p = Random.value;
-        (float new_size_p, bool size_mut) = FloatCrossOver(size_p, other.size_p, p, mut_r, new Vector2(min_p, 1f));
+        (float new_size_p, bool size_mut) = FloatCrossOver(size_p, other.size_p, p, mut_r, genetic_var_p, new Vector2(min_p, 1f));
 
         // Shares the stratification of weight and size?
         //p = Random.value;
-        (float new_weight_p, bool weight_mut) = FloatCrossOver(weight_p, other.weight_p, p, mut_r, new Vector2(min_p, 1f));
+        (float new_weight_p, bool weight_mut) = FloatCrossOver(weight_p, other.weight_p, p, mut_r, genetic_var_p, new Vector2(min_p, 1f));
 
         p = Random.value;
-        (float new_nut_p, bool nut_p_mut) = FloatCrossOver(nut_p, other.nut_p, p, mut_r, new Vector2(min_p, 1f));
+        (float new_nut_p, bool nut_p_mut) = FloatCrossOver(nut_p, other.nut_p, p, mut_r, genetic_var_p, new Vector2(min_p, 1f));
 
         p = Random.value;
-        (Color new_color, bool color_mut) = ColorCrossOver(color, other.color, p, mut_r);
+        (Color new_color, bool color_mut) = ColorCrossOver(color, other.color, p, mut_r, genetic_var_p);
 
         return new GeneticVector(new_size_p, new_weight_p, new_nut_p, new_color);
     }
@@ -46,9 +46,12 @@ public class GeneticVector
     }
 
 
-    public (float, bool) FloatCrossOver(float self, float other, float p, float mut_r, Vector2 constraint)
+    public (float, bool) FloatCrossOver(float self, float other, float p, float mut_r, float genetic_var_p, Vector2 constraint)
     {
-        float new_float = p * self + (1 - p) * other;
+        float min_value = Mathf.Clamp(Mathf.Min(self, other) - genetic_var_p, constraint[0], constraint[1]);
+        float max_value = Mathf.Clamp(Mathf.Max(self, other) + genetic_var_p, constraint[0], constraint[1]);
+
+        float new_float = p * min_value + (1 - p) * max_value;
 
         bool mutated = false;
         if (Random.value <= mut_r)
@@ -60,19 +63,26 @@ public class GeneticVector
     }
 
 
-    public (Color, bool) ColorCrossOver(Color self, Color other, float p, float mut_r)
+    public (Color, bool) ColorCrossOver(Color self, Color other, float p, float mut_r, float genetic_var_p)
     {
-        Vector3 self_color_vec = new Vector3(self.r, self.g, self.b) * 255;
-        Vector3 other_color_vec = new Vector3(other.r, other.g, other.b) * 255;
-        Vector3 full_color_vec = new Vector3(255f, 255f, 255f);
+        Vector4 a = self;
+        Vector4 b = other;
 
-        Vector3 self_color_sqred = Vector3.Scale((full_color_vec - self_color_vec), (full_color_vec - self_color_vec));
-        Vector3 other_color_sqred = Vector3.Scale((full_color_vec - other_color_vec), (full_color_vec - other_color_vec));
-        Vector3 unsqrrooted_value = self_color_sqred * p + other_color_sqred * (1-p);
+        Vector4 new_a = Vector4.Scale((Vector4.one - a), (Vector4.one - a));
+        Vector4 new_b = Vector4.Scale((Vector4.one - b), (Vector4.one - b));
 
-        Color new_color = new Color((255f - Mathf.Sqrt(unsqrrooted_value[0])) / 255f,
-            (255f - Mathf.Sqrt(unsqrrooted_value[1])) / 255f,
-            (255f - Mathf.Sqrt(unsqrrooted_value[2])) / 255f);
+        // Note : adding offsets will impact alpha
+        // Vector4 new_a_offset = (new_a - new_b).normalized * genetic_var_p;
+        // Vector4 new_b_offset = (new_b - new_a).normalized * genetic_var_p;
+        Vector4 new_a_offset = Random.onUnitSphere * genetic_var_p;
+        Vector4 new_b_offset = Random.onUnitSphere * genetic_var_p;
+
+        Vector4 mixed_value = (new_a + new_a_offset) * p + (new_b + new_b_offset) * (1-p);
+        Color new_color = new Color();
+        for (int i = 0; i < 4; i++)
+        {
+            new_color[i] = Mathf.Clamp01(1f - Mathf.Sqrt(Mathf.Max(0f,mixed_value[i])));
+        }
 
         bool mutated = false;
         if (Random.value <= mut_r)

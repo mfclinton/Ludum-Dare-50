@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public List<LandPlot> shop_regular_plots;
     public List<LandPlot> shop_gold_plots;
 
-    public float mut_r, next_upkeep;
+    [Range(0f,1f)]
+    public float mut_r, genetic_var_p;
+    public float next_upkeep;
     public Vector2 size_constraints, weight_constraints, nutrition_constraints;
     int next_id, n_splices_today;
 
@@ -85,9 +87,10 @@ public class GameManager : MonoBehaviour
         uim.Update_N_Splices(n_splices_today, max_splices);
     }
 
-    public void Buy_Increase_Max_Weight()
+    public void Buy_Fertilizer()
     {
         weight_constraints[1] = weight_constraints[1] * 1.20f;
+        nutrition_constraints[1] = nutrition_constraints[1] * 1.20f;
     }
 
     public void Buy_Plot(bool regular_plot)
@@ -193,7 +196,7 @@ public class GameManager : MonoBehaviour
 
                 GeneticVector c0 = chromosomes[index_pair[0]];
                 GeneticVector c1 = chromosomes[index_pair[1]];
-                GeneticVector c2 = c0.CrossOver(c1, mut_r);
+                GeneticVector c2 = c0.CrossOver(c1, mut_r, genetic_var_p);
 
                 new_chromosomes.Add(c2);
             }
