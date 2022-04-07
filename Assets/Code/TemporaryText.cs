@@ -54,7 +54,6 @@ public class TemporaryText : MonoBehaviour
             fade_triggered = false;
             total_time_elapsed = 0f;
         }
-        Debug.Log("p: " + p.ToString() + " time: " + total_time_elapsed.ToString());
     }
 
     public void HideUpkeepText()
