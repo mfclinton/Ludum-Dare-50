@@ -39,7 +39,7 @@ public class Cabbage_Info_Helper
             return null;
 
         int index = 0;
-        foreach(Displayed_Cabbage_Info ci in cabbage_info)
+        foreach (Displayed_Cabbage_Info ci in cabbage_info)
         {
             if (value < cabbage_info[index].thresh)
                 break;
@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
             icon.sprite = dci.icon;
         }
 
-        if(1 < selected_ui_panels.Count(sup => sup.panel.activeSelf == true) 
+        if (1 < selected_ui_panels.Count(sup => sup.panel.activeSelf == true)
             && !input_mng.GetSelectedCabbages().Any(cabbage => cabbage.grown_p < 1f))
         {
             splice_button.SetActive(true);
@@ -188,7 +188,7 @@ public class UIManager : MonoBehaviour
     public void Trigger_Random_Seed()
     {
         (GeneticVector gv, int id) = gm.GenerateRandomSeed();
-        if(gv == null)
+        if (gv == null)
             return;
 
         Add_Seed(gv, id);
@@ -239,12 +239,12 @@ public class UIManager : MonoBehaviour
 
     public void Update_Cash(float cash)
     {
-        cash_text.text = "Cash:" + Format_Money_String(cash);
+        cash_text.text = "Cash: " + Format_Money_String(cash);
     }
 
     public void Update_HighScore_Text(float cash)
     {
-        highscore_text.text = "HIGH SCORE: " + Format_Money_String(cash);
+        highscore_text.text = "Previous High Score: " + Format_Money_String(cash);
     }
 
     public void Update_Day(float day)
@@ -273,7 +273,7 @@ public class UIManager : MonoBehaviour
     {
         upkeep_text.text = "Upkeep: " + Format_Money_String(days_cash_change);
 
-        if(ue != null)
+        if (ue != null)
         {
             cash_event_text.TriggerFade(ue.cash_change, ue.flavor_text);
         }

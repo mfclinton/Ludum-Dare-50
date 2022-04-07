@@ -21,38 +21,41 @@ public class DayManager : MonoBehaviour
     GameManager gm;
     int day_clicked;
 
+    public TemporaryText cash_event_text;
+
     public void TriggerNight()
     {
         if (gm.game_over)
             return;
 
-        if(!sun_setting && !growing && !sun_rising && gm.day != day_clicked)
+        if (!sun_setting && !growing && !sun_rising && gm.day != day_clicked)
         {
             sun_setting = true;
             day_clicked = gm.day;
             event_audio.PlayNextDaySound();
         }
+        cash_event_text.HideUpkeepText();
     }
 
     void HandleNight()
     {
         if (sun_setting)
         {
-            print("Sun Setting");
+            //print("Sun Setting");
             sun_setting = InterpolateSun(night);
             if (!sun_setting)
                 TriggerGrowth();
         }
         else if (growing)
         {
-            print("Growing");
+            //print("Growing");
             growing = UpdateCabbageGrowth(cabbages, end_grown_p);
             if (!growing)
                 sun_rising = true;
         }
         else if (sun_rising)
         {
-            print("Sun Rising");
+            //print("Sun Rising");
             sun_rising = InterpolateSun(day);
             if (!sun_rising)
             {
@@ -83,7 +86,7 @@ public class DayManager : MonoBehaviour
     (List<Cabbage>, List<float>) GetCabbageAndEndGrowths()
     {
         LandPlot[] cabbaged_plots = FindObjectsOfType<LandPlot>().Where(lp => lp.cabbage != null).ToArray();
-        
+
         List<float> end_grown_p = new List<float>();
         List<Cabbage> cabbages = new List<Cabbage>();
 
@@ -125,7 +128,7 @@ public class DayManager : MonoBehaviour
     bool InterpolateSun(Color goal)
     {
         sun.color = Color.Lerp(sun.color, goal, Time.deltaTime * sun_speed);
-        if(Vector4.Distance(sun.color, goal) < 0.1f)
+        if (Vector4.Distance(sun.color, goal) < 0.1f)
         {
             sun.color = goal;
             return false;

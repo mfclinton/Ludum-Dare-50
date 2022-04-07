@@ -198,8 +198,8 @@ MonoBehaviour:
     - 0.6
     - 1.5
     - 0.7
-    flavour_text: "It\u2019s getting hot and lacking rain here, so farmers better
-      sell all their big and juicy cabbages!"
+    flavour_text: "It\u2019s getting hot and lacking rain in here, so farmers sell
+      all your big and juicy cabbages!"
   - size_change: -1
     weight_change: -1
     nut_p_change: -1
@@ -416,7 +416,7 @@ MonoBehaviour:
     - 1.5
     - 0.7
     flavour_text: Scientists find breakthrough in global constipation crisis CONSTIPATE-19.
-      Fiber found in cabbages leads to a 68% decrease in mortality,sending demand
+      Fiber found in cabbages leads to a 68% decrease in mortality, sending demand
       skyrocketing.
   - size_change: -4
     weight_change: -5
