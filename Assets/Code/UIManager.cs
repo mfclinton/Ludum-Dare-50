@@ -130,7 +130,7 @@ public class UIManager : MonoBehaviour
                 value = value * 100f;
 
             TextMeshProUGUI text_mesh = element.panel.GetComponentsInChildren<TextMeshProUGUI>().First(x => x.gameObject != element.panel.gameObject);
-            text_mesh.text = value.ToString("0.0") + dci.text;
+            text_mesh.text = value.ToString("F2") + dci.text;
 
             Image icon = element.panel.GetComponentsInChildren<Image>().First(x => x.gameObject != element.panel.gameObject);
             icon.sprite = dci.icon;
@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
         }
 
         TextMeshProUGUI price = selected_ui_panels[selected_index].sale_button.GetComponentInChildren<TextMeshProUGUI>();
-        price.text = "$" + gm.Get_Price(selected).ToString("0.00");
+        price.text = Format_Money_String(gm.Get_Price(selected));
     }
 
 
@@ -226,23 +226,25 @@ public class UIManager : MonoBehaviour
         Destroy(selected_seed.gameObject);
     }
 
-    public void Update_Cash(float cash)
+    string Format_Money_String(float cash, bool show_plus = false)
     {
         string before_str = "$";
         if (cash < 0)
             before_str = "-" + before_str;
-        before_str = "Cash: " + before_str;
+        else if (show_plus)
+            before_str = "+" + before_str;
 
-        cash_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
+        return before_str + Mathf.Abs(cash).ToString("F2");
+    }
+
+    public void Update_Cash(float cash)
+    {
+        cash_text.text = "Cash:" + Format_Money_String(cash);
     }
 
     public void Update_HighScore_Text(float cash)
     {
-        string before_str = "HIGH SCORE: $";
-        if (cash < 0)
-            before_str = "-" + before_str;
-
-        highscore_text.text = before_str + Mathf.Abs(cash).ToString("0.00");
+        highscore_text.text = "HIGH SCORE: " + Format_Money_String(cash);
     }
 
     public void Update_Day(float day)
@@ -269,11 +271,7 @@ public class UIManager : MonoBehaviour
 
     public void Update_Upkeep(float days_cash_change, UpkeepEntry ue)
     {
-        string before_str = "$";
-        if (days_cash_change < 0)
-            before_str = "-" + before_str;
-        before_str = "Upkeep: " + before_str;
-        upkeep_text.text = before_str + Mathf.Abs(days_cash_change).ToString("0.00");
+        upkeep_text.text = "Upkeep: " + Format_Money_String(days_cash_change);
 
         if(ue != null)
         {

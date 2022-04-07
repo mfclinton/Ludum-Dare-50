@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject new_cabbage_model = Instantiate(cabbage_model_prefab);
         Cabbage new_cabbage = new_cabbage_model.AddComponent<Cabbage>();
-        new_cabbage.Set(new_chromosome, size_constraints, weight_constraints);
+        new_cabbage.Set(new_chromosome, size_constraints, weight_constraints, nutrition_constraints);
         event_audio.PlayCabbagePlaceSound();
         return new_cabbage;
     }
@@ -308,7 +308,10 @@ public class GameManager : MonoBehaviour
 
     public float Get_Price(Cabbage c)
     {
-        float price = market.DetermineCabbageValue(c);
+        float price = 0f;
+        if(c.grown_p != 0f)
+            price = market.DetermineCabbageValue(c);
+
         return price;
     }
 

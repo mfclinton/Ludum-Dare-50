@@ -28,11 +28,12 @@ public class Cabbage : MonoBehaviour
     //}
 
 
-    public void Set(GeneticVector chromosome, Vector2 size_constraints, Vector2 weight_constraints)
+    public void Set(GeneticVector chromosome, Vector2 size_constraints, Vector2 weight_constraints, Vector2 nutrition_constraints)
     {
         this.chromosome = chromosome;
         this.size_constraints = new Vector2(size_constraints[0], size_constraints[1]);
-        this.weight_constraints = new Vector2(weight_constraints[0], weight_constraints[1]); ;
+        this.weight_constraints = new Vector2(weight_constraints[0], weight_constraints[1]);
+        this.nutrition_constraints = new Vector2(nutrition_constraints[0], nutrition_constraints[1]);
 
         this.grown_p = 0f;
 
@@ -47,9 +48,6 @@ public class Cabbage : MonoBehaviour
 
     public float Get_Actual_Weight()
     {
-        print(weight_constraints[0]);
-        print(weight_constraints[1]);
-        print(1111111);
         return Get_Actual_Attr_Value(chromosome.weight_p, weight_constraints);
     }
 
@@ -60,7 +58,7 @@ public class Cabbage : MonoBehaviour
 
     public float Get_Actual_Nutrients()
     {
-        return chromosome.nut_p;
+        return Get_Actual_Attr_Value(chromosome.nut_p, nutrition_constraints);
     }
 
     public void UpdateAppearance()
@@ -106,6 +104,8 @@ public class Cabbage : MonoBehaviour
         dict[GeneticVector.TRAIT_ID.WEIGHT] = Get_Actual_Weight();
         dict[GeneticVector.TRAIT_ID.NUT_P] = Get_Actual_Nutrients();
         dict[GeneticVector.TRAIT_ID.GROWN_P] = grown_p;
+        print("nut");
+        print(dict[GeneticVector.TRAIT_ID.NUT_P]);
 
         return dict;
     }

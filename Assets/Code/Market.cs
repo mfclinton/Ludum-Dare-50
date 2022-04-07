@@ -61,6 +61,8 @@ public class Market : MonoBehaviour
         float weight = cabbage.Get_Actual_Weight();
         float nut_p = cabbage.Get_Actual_Nutrients();
         Color color = genetic_vector.color;
+        print("Nut p");
+        print(nut_p);
 
         float price = CabbagePrice(size, weight, nut_p, color);
         return 0f <= price ? price : 0f;
