@@ -308,9 +308,7 @@ public class GameManager : MonoBehaviour
 
     public float Get_Price(Cabbage c)
     {
-        float price = 0f;
-        if(c.grown_p != 0f)
-            price = market.DetermineCabbageValue(c);
+        float price = market.DetermineCabbageValue(c);
 
         return price;
     }
