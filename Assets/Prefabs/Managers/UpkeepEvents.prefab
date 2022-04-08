@@ -47,7 +47,7 @@ MonoBehaviour:
   upkeep_events:
   - cash_change: -5
     flavor_text: Mice steal your money!
-  - cash_change: 5
+  - cash_change: 3
     flavor_text: Mice deliver you someone's stolen money!
   - cash_change: -10
     flavor_text: 'New legislation has passed, supported by big cabbage lobbyists,
@@ -66,7 +66,7 @@ MonoBehaviour:
   - cash_change: 1
     flavor_text: The president announces $1 STIMULUS CHECKS TO ALL CITIZENS to help
       average citizens after the tech bubble crash and subsequent $589 trillion bailout.
-  - cash_change: -20
+  - cash_change: -15
     flavor_text: "\u201C[Big] Corporations are people too\u201D, the president proclaims
       in his State of the Union Address."
   - cash_change: -10
