@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     EventAudio event_audio;
     BuyoutForecaster bf;
     HighScoreTracker hst;
+    DayManager dm;
 
     // Data Tracking
     Dictionary<int, List<float>> sales;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         event_audio = FindObjectOfType<EventAudio>();
         bf = FindObjectOfType<BuyoutForecaster>();
         hst = FindObjectOfType<HighScoreTracker>();
+        dm = FindObjectOfType<DayManager>();
 
         sales = new Dictionary<int, List<float>>();
         seeds = new List<GeneticVector>();
@@ -289,6 +291,9 @@ public class GameManager : MonoBehaviour
 
     public void Sell(LandPlot plot)
     {
+        if (!dm.IsDay())
+            return;
+
         Cabbage c = plot.cabbage;
         float price = Get_Price(c);
         Update_Cash(price);
