@@ -3833,7 +3833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aab2949d6fc5aa4b9e44182ff8163fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: -100
+  cost: -150
   cost_text: {fileID: 1232320721}
   invoked_method:
     m_PersistentCalls:
@@ -5590,7 +5590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aab2949d6fc5aa4b9e44182ff8163fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: -100
+  cost: -75
   cost_text: {fileID: 783261172}
   invoked_method:
     m_PersistentCalls:

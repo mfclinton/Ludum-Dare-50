@@ -91,7 +91,7 @@ MonoBehaviour:
     - 0.7
     flavour_text: 'Oktoberfest is coming! Sauerkraut producers will be looking for
       a larger cabbage with a lower percentage of water.  '
-  - size_change: -8
+  - size_change: -6
     weight_change: -4
     nut_p_change: 5
     color_change: 5
@@ -273,10 +273,10 @@ MonoBehaviour:
     - 0.7
     flavour_text: 'More and more celebrities have been pushing cabbage as a skin
       lubricator. '
-  - size_change: -7
-    weight_change: -7
-    nut_p_change: -7
-    color_change: -7
+  - size_change: -6
+    weight_change: -6
+    nut_p_change: -6
+    color_change: -6
     volatility_change: 0.5
     color_multipliers:
     - 0.5

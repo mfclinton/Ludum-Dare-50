@@ -15,10 +15,10 @@ public class Market : MonoBehaviour
     public ColorNode[] color_nodes;
     public ColorNode[] active_color_nodes;
 
-    public const float SIZE_MEAN = 8f;
-    public const float WEIGHT_MEAN = 8f;
-    public const float NUT_P_MEAN = 8f;
-    public const float COLOR_MEAN = 8f;
+    public const float SIZE_MEAN = 9f;
+    public const float WEIGHT_MEAN = 9f;
+    public const float NUT_P_MEAN = 9f;
+    public const float COLOR_MEAN = 9f;
 
     public const float LOG_NORMAL_SIGMA = 0.75f;
 
