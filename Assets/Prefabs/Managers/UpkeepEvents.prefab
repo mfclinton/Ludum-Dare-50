@@ -47,7 +47,7 @@ MonoBehaviour:
   upkeep_events:
   - cash_change: -5
     flavor_text: Mice steal your money!
-  - cash_change: 10
+  - cash_change: 5
     flavor_text: Mice deliver you someone's stolen money!
   - cash_change: -10
     flavor_text: 'New legislation has passed, supported by big cabbage lobbyists,
@@ -71,7 +71,10 @@ MonoBehaviour:
       in his State of the Union Address."
   - cash_change: -10
     flavor_text: You buy a cat to thwart the cash stealing mice.
-  - cash_change: -10
+  - cash_change: -15
     flavor_text: Big Giuseppe Gabagool collects his dues.
+  - cash_change: 2
+    flavor_text: Hearing your struggles, your mum starts giving you your allowance
+      again.
   daily_event_chance: 1
   good_event_chance: 0

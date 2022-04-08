@@ -55,10 +55,10 @@ MonoBehaviour:
     color_multipliers: []
     flavour_text: 
   market_events:
-  - size_change: -4
-    weight_change: -4
-    nut_p_change: 1
-    color_change: 1
+  - size_change: -5
+    weight_change: -5
+    nut_p_change: -1
+    color_change: -1
     volatility_change: 0
     color_multipliers:
     - 0.5
@@ -74,8 +74,8 @@ MonoBehaviour:
     flavour_text: 'It''s rainy season! All the local cabbage farmers will have large,
       juicy crops.  '
   - size_change: 0
-    weight_change: 5
-    nut_p_change: -2
+    weight_change: 6
+    nut_p_change: -4
     color_change: 0
     volatility_change: 0
     color_multipliers:
@@ -93,8 +93,8 @@ MonoBehaviour:
       a larger cabbage with a lower percentage of water.  '
   - size_change: -8
     weight_change: -4
-    nut_p_change: 6
-    color_change: 6
+    nut_p_change: 5
+    color_change: 5
     volatility_change: 0
     color_multipliers:
     - 0.5
@@ -110,11 +110,11 @@ MonoBehaviour:
     flavour_text: "In the latest episode of Gordon Ramsey\u2019s hit show, ratings
       were astronomical after contestant Valentyna Lugo\u2019s winning petite cabbage
       dish was revealed; sealing her victory in the season finale. "
-  - size_change: 1
-    weight_change: 1
-    nut_p_change: 1
-    color_change: 1
-    volatility_change: 0
+  - size_change: 3
+    weight_change: 3
+    nut_p_change: 3
+    color_change: 3
+    volatility_change: 0.1
     color_multipliers:
     - 0.5
     - 0.5
@@ -308,10 +308,10 @@ MonoBehaviour:
     - 0.7
     flavour_text: 'Millennials seeking more food for their ever shrinking dollar
       look towards heavy cabbages to make ends meet. '
-  - size_change: 0
-    weight_change: 0
-    nut_p_change: 0
-    color_change: 3
+  - size_change: -1
+    weight_change: -1
+    nut_p_change: -1
+    color_change: 5
     volatility_change: 0
     color_multipliers:
     - 0.5
@@ -326,10 +326,10 @@ MonoBehaviour:
     - 0.7
     flavour_text: A new study from MIT found that the bluer the cabbage, the more
       cancer preventing antibiotics it contains.
-  - size_change: 5
-    weight_change: 5
-    nut_p_change: 5
-    color_change: 5
+  - size_change: 4
+    weight_change: 4
+    nut_p_change: 4
+    color_change: 4
     volatility_change: 0.1
     color_multipliers:
     - 0.5
@@ -399,10 +399,10 @@ MonoBehaviour:
     - 0.7
     flavour_text: LATEST CABBAGE-BASED PIKPOK CHALLENGE LEAVES TEN DEAD. Lawmakers
       are rushing legislation to ban minors from buying cabbages.
-  - size_change: 10
-    weight_change: 10
-    nut_p_change: 10
-    color_change: 10
+  - size_change: 8
+    weight_change: 8
+    nut_p_change: 8
+    color_change: 8
     volatility_change: 0.3
     color_multipliers:
     - 0.5
