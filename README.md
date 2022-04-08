@@ -10,12 +10,15 @@ You're just a regular everyday cabbage farmer, trying to make your way in the wo
 - **Events**: Random events help tell the story of your cabbage growing epic on your way to inevitable sellout to big cabbage. Read about events that impact the market in *The Daily Cabbage* newspaper and stay on the lookout for events affecting your upkeep costs!
 - **Upgrades**: Upgrade the amount of plots for growing cabbages, save up for the special golden plot, buy the ultra powerful ferilizer, or get more splices per day!
 
-NOTE: For the Windows build, close the game by pressing ALT-F4 (sorry!).
+### Known Issues 
+- In the Windows build, close the game by pressing ALT-F4 (sorry!).
+- At smaller browser resolutions, the WebGL expand to fullscreen button is not visible causing the game to get cutoff. The solution is to "Zoom out" in your browser. For example, by pressing CTRL+Minus. 
 
-Credit to CelestialJoy for some of the pixel art.
+### Credits
+- CelestialJoy for some of the pixel art.
+- Our wonderful friends for their feedback throughout.
 
 We hope you enjoy our game, be sure to let us know of your high score!
-
 
 ### **v1.1 (April 7, 2022)** 
 Thanks for everyone’s feedback! We made some changes to make the game overall a better experience. We hope you enjoy and be sure to let us know of any further feedback.
