@@ -11169,7 +11169,7 @@ MonoBehaviour:
     weight_change: 0
     nut_p_change: 0
     color_change: 0
-    volatility_change: -0.5
+    volatility_change: -0.03
     color_multipliers:
     - 0.5
     - 0.5
@@ -11223,7 +11223,7 @@ MonoBehaviour:
     weight_change: -6
     nut_p_change: -6
     color_change: -6
-    volatility_change: 0.5
+    volatility_change: 0.2
     color_multipliers:
     - 0.5
     - 0.5
@@ -11312,7 +11312,7 @@ MonoBehaviour:
     weight_change: 3
     nut_p_change: 3
     color_change: 3
-    volatility_change: 0.3
+    volatility_change: 0.2
     color_multipliers:
     - 0.5
     - 0.5
@@ -11349,7 +11349,7 @@ MonoBehaviour:
     weight_change: 8
     nut_p_change: 8
     color_change: 8
-    volatility_change: 0.3
+    volatility_change: 0.2
     color_multipliers:
     - 0.5
     - 0.5
