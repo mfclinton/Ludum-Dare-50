@@ -33,8 +33,8 @@ Thanks for everyone’s feedback! We made some changes to make the game overall 
 - Negative events will happen more frequently.
 - Market events should have an impact on prices slightly faster.
 - Lowered initial max splices to 1.
-- Increased price of a splice to $100.
 - Increased price of the random seed.
+- Increased price of buying a plot to $150.
 - Tuned min and max values for cabbage attributes
 - Cabbages that are not fully grown are worth less.
 - Splicing is more likely to lead to cabbages that are better than the average of their parts
