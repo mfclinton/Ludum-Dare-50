@@ -23,12 +23,17 @@ public class DayManager : MonoBehaviour
 
     public TemporaryText cash_event_text;
 
+    public bool IsDay()
+    {
+        return !sun_setting && !growing && !sun_rising && gm.day != day_clicked;
+    }
+
     public void TriggerNight()
     {
         if (gm.game_over)
             return;
 
-        if (!sun_setting && !growing && !sun_rising && gm.day != day_clicked)
+        if (IsDay())
         {
             sun_setting = true;
             day_clicked = gm.day;
