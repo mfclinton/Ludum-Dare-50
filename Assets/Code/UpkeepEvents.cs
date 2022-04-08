@@ -14,16 +14,25 @@ public class UpkeepEvents : MonoBehaviour
 {
     public float daily_cash_change;
     public UpkeepEntry[] upkeep_events;
+    public float event_chance_change, good_event_chance_change;
     [Range(0f, 1f)]
-    public float daily_event_chance;
-    [Range(0f, 1f)]
-    public float good_event_chance;
+    public float daily_event_chance, good_event_chance;
+    public Vector2 event_chance_constraints, good_event_chance_constraints;
+
+    void Update_Event_Chances()
+    {
+        daily_event_chance = Mathf.Clamp(daily_event_chance + event_chance_change, event_chance_constraints[0], event_chance_constraints[1]);
+        good_event_chance = Mathf.Clamp(good_event_chance + good_event_chance_change, good_event_chance_constraints[0], good_event_chance_constraints[1]);
+    }
 
     public (float, UpkeepEntry) GetTodaysCashChange(bool ignore_events)
     {
         UpkeepEntry e = null;
         if(!ignore_events)
+        {
             e = RollEvent();
+            Update_Event_Chances();
+        }
 
         if (e != null)
         {

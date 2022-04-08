@@ -1737,8 +1737,12 @@ MonoBehaviour:
   - cash_change: 2
     flavor_text: Hearing your struggles, your mum starts giving you your allowance
       again.
+  event_chance_change: 0
+  good_event_chance_change: -0.025
   daily_event_chance: 0.25
-  good_event_chance: 0.2
+  good_event_chance: 0.4
+  event_chance_constraints: {x: 0.25, y: 0.25}
+  good_event_chance_constraints: {x: 0.2, y: 0.5}
 --- !u!1 &234952851
 GameObject:
   m_ObjectHideFlags: 0
@@ -8132,7 +8136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 521.3153, y: -65.254654}
+  m_AnchoredPosition: {x: 521.315, y: -65.254654}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655762104
