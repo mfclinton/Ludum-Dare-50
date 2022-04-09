@@ -198,7 +198,7 @@ public class UIManager : MonoBehaviour
     {
         Image seed_img = Instantiate(seed_image_prefab, seed_panel);
         seed_img.color = new Color(gv.color.r, gv.color.g, gv.color.b, 0.5f);
-        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Clamp(gv.size_p, seed_display_constraints[0], seed_display_constraints[1]); // Clamp to prevent SO SMOL
+        seed_img.GetComponent<RectTransform>().localScale = Vector3.one * Mathf.Lerp(seed_display_constraints[0], seed_display_constraints[1], gv.size_p); // Clamp to prevent SO SMOL
 
         Button button = seed_img.GetComponent<Button>();
         button.onClick.AddListener(() => input_mng.Set_Selected_Seed(id, seed_img));
