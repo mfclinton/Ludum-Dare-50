@@ -36,12 +36,27 @@ public class InputManager : MonoBehaviour
 
     void HandleUserInput()
     {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
         if (Input.GetMouseButtonDown(0))
         {
             object hit_component = Raycast();
 
             if (typeof(LandPlot).IsInstanceOfType(hit_component))
                 HandleSelectedPlot((LandPlot) hit_component);
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            ClearSelected();
+        }
+        else if (scroll != 0f)
+        {
+            bool go_right = 0f < scroll;
+            ui.Select_Next_Seed(go_right);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ui.Trigger_Splice_If_Button_Active();
         }
     }
 

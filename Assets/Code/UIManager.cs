@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
 {
     InputManager input_mng;
     GameManager gm;
+    int selected_seed_sib_index = 0;
     Image selected_seed;
     public GameObject splice_button, game_over_panel, buy_reg_plot_button, buy_gold_plot_button;
     public Transform seed_panel;
@@ -185,6 +186,14 @@ public class UIManager : MonoBehaviour
         Add_Seed(gv, id);
     }
 
+    public void Trigger_Splice_If_Button_Active()
+    {
+        if (splice_button.activeSelf)
+        {
+            splice_button.GetComponent<Button>().onClick.Invoke();
+        }
+    }
+
     public void Trigger_Random_Seed()
     {
         (GeneticVector gv, int id) = gm.GenerateRandomSeed();
@@ -204,9 +213,38 @@ public class UIManager : MonoBehaviour
         button.onClick.AddListener(() => input_mng.Set_Selected_Seed(id, seed_img));
     }
 
+    public void Select_Next_Seed(bool go_right)
+    {
+        if (seed_panel.childCount == 0)
+            return;
+
+        if(selected_seed != null)
+        {
+            if (go_right)
+                selected_seed_sib_index += 1;
+            else
+                selected_seed_sib_index -= 1;
+        }
+
+        Clamp_Selected_Seed_Sib_Index();
+        Trigger_Seed_Button(seed_panel.GetChild(selected_seed_sib_index).GetComponent<Image>());
+    }
+
+    void Clamp_Selected_Seed_Sib_Index()
+    {
+        selected_seed_sib_index = Mathf.Clamp(selected_seed_sib_index, 0, seed_panel.childCount - 1);
+    }
+
+    void Trigger_Seed_Button(Image seed)
+    {
+        seed.GetComponent<Button>().onClick.Invoke();
+    }
+
     public void Select_Seed(Image new_seed)
     {
         selected_seed = new_seed;
+        selected_seed_sib_index = new_seed.transform.GetSiblingIndex();
+
         Color c = selected_seed.color;
         selected_seed.color = new Color(c.r, c.g, c.b, 1f);
     }
@@ -223,6 +261,9 @@ public class UIManager : MonoBehaviour
 
     public void Destroy_Seed()
     {
+        selected_seed_sib_index -= 1;
+        Clamp_Selected_Seed_Sib_Index();
+
         Destroy(selected_seed.gameObject);
     }
 
